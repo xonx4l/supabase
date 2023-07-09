@@ -1,5 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 const BackedBy = ({
   className,
@@ -27,21 +28,25 @@ const BackedBy = ({
             className="h-6 w-auto sm:h-8"
             src={`${basePath}/images/logos/yc--grey.png`}
             alt="Y Combinator"
+            loading='lazy'
           />
           <img
             className="relative w-auto h-4 sm:h-5"
             src={`${basePath}/images/logos/mozilla--grey.png`}
             alt="Mozilla"
+            loading='lazy'
           />
           <img
             className="relative w-auto h-4 sm:h-5"
             src={`${basePath}/images/logos/coatue.png`}
             alt="Coatue"
+            loading='lazy'
           />
           <img
             className="relative w-auto h-5 sm:h-6"
             src={`${basePath}/images/logos/felicis.png`}
             alt="Felicis"
+            loading='lazy'
           />
         </div>
       </div>

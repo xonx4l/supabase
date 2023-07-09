@@ -24,6 +24,7 @@ function ExampleCard(props: any) {
               src={props.author_img}
               alt={props.author + ' GitHub profile picture'}
               className="border-scale-500 inline w-6 h-6 rounded-full"
+              loading='lazy'
             />
             <span className="text-scale-1200 ml-2 text-sm">{props.author}</span>
           </div>
@@ -60,6 +61,7 @@ function ExampleCard(props: any) {
                   className="h-full w-auto"
                   src="https://vercel.com/button"
                   alt="vercel button"
+                  loading='lazy'
                 />
               </a>
             )}
