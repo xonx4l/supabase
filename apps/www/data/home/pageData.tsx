@@ -42,7 +42,7 @@ export default {
         children: <UseAnyStack />,
       },
       {
-        title: 'Postgres Database',
+        title: 'Postgres with Superpowers',
         paragraph:
           'Postgres is the core of Supabase. We simply provide the tools to make to most of it.',
         outerClassName: '',
@@ -61,8 +61,7 @@ export default {
       },
       {
         title: 'Open Source',
-        paragraph:
-          'To avoid lock-in, we make it easy to migrate in and out by adopting open source tools.',
+        paragraph: 'We choose open source tools which are scalable and make them simple to use.',
         outerClassName: '!w-full !h-[400px]',
         innerClassName: '!w-full ',
         children: <></>,

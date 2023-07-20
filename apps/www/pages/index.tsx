@@ -8,9 +8,9 @@ import Hero from '~/components/Hero/Hero'
 import 'swiper/swiper.min.css'
 import pageData from '../data/home/pageData'
 
-const Highlights = dynamic(() => import('~/components/Highlights/index'))
-const UseSupabaseTo = dynamic(() => import('~/components/UseSupabaseTo'))
 const Products = dynamic(() => import('~/components/Products/index'))
+const UseSupabaseTo = dynamic(() => import('~/components/UseSupabaseTo'))
+const Highlights = dynamic(() => import('~/components/Highlights/index'))
 const TimedTabsSection = dynamic(() => import('~/components/Sections/TimedTabsSection'))
 // const HomepageMetricsSection = dynamic(() => import('components/Sections/HomepageMetricsSection'))
 const DashboardFeatures = dynamic(() => import('components/DashboardFeatures/index'))
