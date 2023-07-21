@@ -141,14 +141,18 @@ const ProjectDropdown = ({ alt }: { alt?: boolean }) => {
                 ))}
               </CommandGroup_Shadcn_>
               <CommandGroup_Shadcn_ className="border-t">
-                <CommandItem_Shadcn_ className="cursor-pointer" onSelect={() => setOpen(false)}>
-                  <Link passHref href={`/new/${selectedOrganization?.slug}`}>
+                <Link passHref href={`/new/${selectedOrganization?.slug}`}>
+                  <CommandItem_Shadcn_
+                    asChild
+                    className="cursor-pointer"
+                    onSelect={() => setOpen(false)}
+                  >
                     <a className="flex items-center space-x-2 w-full">
                       <IconPlus size={14} strokeWidth={1.5} />
                       <p>New project</p>
                     </a>
-                  </Link>
-                </CommandItem_Shadcn_>
+                  </CommandItem_Shadcn_>
+                </Link>
               </CommandGroup_Shadcn_>
             </CommandList_Shadcn_>
           </Command_Shadcn_>

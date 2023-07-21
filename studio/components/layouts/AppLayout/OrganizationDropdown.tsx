@@ -68,18 +68,18 @@ const OrganizationDropdown = () => {
                     ? `/org/${org.slug}/general`
                     : `/org/${org.slug}`
                   return (
-                    <CommandItem_Shadcn_
-                      key={org.slug}
-                      value={org.name}
-                      className="cursor-pointer"
-                      onSelect={() => {
-                        setOpen(false)
-                      }}
-                    >
-                      <Link passHref href={href}>
+                    <Link key={org.slug} passHref href={href}>
+                      <CommandItem_Shadcn_
+                        asChild
+                        value={org.name}
+                        className="cursor-pointer"
+                        onSelect={() => {
+                          setOpen(false)
+                        }}
+                      >
                         <a className="w-full">{org.name}</a>
-                      </Link>
-                    </CommandItem_Shadcn_>
+                      </CommandItem_Shadcn_>
+                    </Link>
                   )
                 })}
               </CommandGroup_Shadcn_>
