@@ -1,0 +1,161 @@
+---
+title: 'Particles animation with React Three Fiber, NextJs and Supabase'
+description: Learn how to replicate the Launch Week 8 dynamic stars animation.
+tags:
+  - tutorial
+date: '2023-07-30'
+toc_depth: 2
+author: fsansalvadore
+image: lw8-particles-animation/lw8-particles-animation-cover.png
+thumb: lw8-particles-animation/lw8-particles-animation-cover.png
+---
+
+[Introduction]
+
+# Setting Up the Project
+
+To get started, make sure you have Node.js installed. Create a new React project with Next.js and install the required dependencies:
+
+```bash
+npm install @react-three/fiber three @supabase/supabase-js
+```
+
+# The Particle Component
+
+Now, let's create a Particle component responsible for rendering individual particles and animating them in an 8 shape pattern.
+
+```tsx
+// components/Particle.tsx
+import React, { useMemo, useEffect, useState, useRef } from 'react'
+import { useFrame } from '@react-three/fiber'
+import { AdditiveBlending } from 'three'
+
+interface Props {
+  animate?: boolean
+  children: any
+  config: any
+}
+
+const Particle = ({ animate = true, children, config }: Props) => {
+  const particle = useRef<any>(null)
+
+  // Particle positioning and animation logic here...
+
+  useFrame(({ clock }) => {
+    // Animation logic here...
+  })
+
+  return <mesh ref={particle}>{children}</mesh>
+}
+export default Particle
+```
+
+# Creating the Particle Animation Canvas
+
+Now, let's build the main component that will house the particle animation canvas.
+
+```tsx
+// components/ParticlesCanvas.tsx
+import React, { useEffect, useState } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { AdditiveBlending } from 'three'
+import useParticlesConfig from './hooks/useParticlesConfig'
+import { SupabaseClient } from '@supabase/supabase-js'
+import Particle from './Particle'
+
+interface Props {
+  supabase?: SupabaseClient
+  users: any
+}
+
+const ParticlesCanvas = ({ supabase, users }: Props) => {
+  // Component logic here...
+
+  /* ThreeJs setup and rendering */
+  return (
+    <Canvas dpr={[1, 2]} camera={{ fov: 75, position: [0, 0, 500] }} className="relative z-30">
+      <ambientLight intensity={config.lightIntensity} />
+      <group position={[0, 70, 0]} scale={[0.9, 0.9, 0.9]}>
+        {/* Animated 8 shape particles */}
+        {particles?.map((user: any, index: number) => (
+          <Particle
+            key={`particle-${user.username ?? index}`}
+            user={user}
+            config={config}
+            animate={animate}
+          >
+            {/* Particle geometry and material selection here... */}
+          </Particle>
+        ))}
+      </group>
+    </Canvas>
+  )
+}
+
+export default ParticlesCanvas
+```
+
+# Integrating the Particle Animation with Real-time Data
+
+To make our animation dynamic and responsive to real-time data, we'll integrate it with a data source using Supabase.
+
+```tsx
+// components/ParticlesCanvas.tsx
+// ... Other imports
+
+const ParticlesCanvas = ({ supabase, users }: Props) => {
+  // Component logic here...
+
+  const loadUsers = async () => {
+    // Load user data from Supabase
+    // Implementation details depend on your Supabase configuration
+  }
+
+  useEffect(() => {
+    // Subscribe to real-time changes in user data
+    // Update particles live when new tickets are generated
+    // Cleanup the subscription on unmount
+  }, [])
+
+  // ... Three.js setup and rendering
+}
+
+export default ParticlesCanvas
+```
+
+# Controlling Animation with useFrame
+
+Now, let's harness the power of useFrame from React Three Fiber to ensure our animation runs smoothly by adjusting the frame rate.
+
+```tsx
+// components/Particle.tsx
+// ... Other imports
+
+const Particle = ({ animate = true, children, config }: Props) => {
+  // Particle positioning and animation logic here...
+
+  useFrame(({ clock }) => {
+    if (animate) {
+      // Animation logic here...
+    }
+  })
+
+  return <mesh ref={particle}>{children}</mesh>
+}
+
+export default Particle
+```
+
+# Conclusion:
+
+Congratulations! You've successfully implemented an eye-catching particle animation using Three.js and React Three Fiber. By utilizing the useFrame hook, you've harnessed the browser's frame rate to create a smooth and captivating animation. Whether it's for a creative portfolio or a visually stunning website, this particle animation is sure to leave a lasting impression on your users.
+
+Feel free to customize the animation further by tweaking the configuration settings or integrating it with your data source for real-time updates. Now, go ahead and add this elegant 8 shape animation to your project and watch it mesmerize your audience! Happy coding!
+
+Add `#debug` to the [launch week page](https://supabase.com/launch-week#debug) to play around with the animation settings.
+
+<img
+  alt="particles animation debug"
+  className="block"
+  src="/images/blog/lw8-particles-animation/lw8-particles-animation-debug.png"
+/>
