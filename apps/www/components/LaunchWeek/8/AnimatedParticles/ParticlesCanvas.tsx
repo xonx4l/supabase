@@ -119,7 +119,8 @@ const ParticlesCanvas = ({ supabase, users }: { supabase?: SupabaseClient; users
             config={config}
             animate={animate}
           >
-            {(!!user.id && user.golden) || (config.showGold && Math.random() <= 0.5) ? (
+            {(!!user.username && user.golden) ||
+            (!user.username && config.showGold && Math.random() <= 0.5) ? (
               <>
                 <GoldGeometry />
                 <GoldMaterial />
