@@ -10,8 +10,9 @@ import SectionContainer from '~/components/Layouts/SectionContainer'
 
 import ProductCard from './ProductCard'
 import DatabaseVisual from './DatabaseVisual'
+import { Solutions } from '~/data/Solutions'
 
-const Products = (props: any) => {
+const Products = ({ products }: { products: Solutions }) => {
   const router = useRouter()
   const telemetryProps = useTelemetryProps()
 
@@ -75,10 +76,10 @@ const Products = (props: any) => {
       <dl className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-4 lg:gap-6 md:grid-cols-12">
         <ProductCard
           alignLeft
-          url={props.products['database'].url}
-          icon={props.products['database'].icon}
-          title={props.products['database'].name}
-          subtitle={props.products['database'].description}
+          url={products['database'].url}
+          icon={products['database'].icon}
+          title={products['database'].name}
+          subtitle={products['database'].description}
           highlights={
             <ul className="flex flex-col gap-1">
               <li>
@@ -97,9 +98,9 @@ const Products = (props: any) => {
           className="col-span-6"
         />
         <ProductCard
-          url={props.products['authentication'].url}
-          icon={props.products['authentication'].icon}
-          title={props.products['authentication'].name}
+          url={products['authentication'].url}
+          icon={products['authentication'].icon}
+          title={products['authentication'].name}
           subtitle={
             <>
               Add user sign ups and logins,
@@ -123,9 +124,9 @@ const Products = (props: any) => {
           onClick={() => sendTelemetryEvent(name)}
         />
         <ProductCard
-          url={props.products['storage'].url}
-          icon={props.products['storage'].icon}
-          title={props.products['storage'].name}
+          url={products['storage'].url}
+          icon={products['storage'].icon}
+          title={products['storage'].name}
           subtitle={<>Store, organize, and serve large files, from videos to images.</>}
           image={
             <div className="absolute inset-0 z-0">
@@ -143,9 +144,9 @@ const Products = (props: any) => {
           onClick={() => sendTelemetryEvent(name)}
         />
         <ProductCard
-          url={props.products['edge-functions'].url}
-          icon={props.products['edge-functions'].icon}
-          title={props.products['edge-functions'].name}
+          url={products['edge-functions'].url}
+          icon={products['edge-functions'].icon}
+          title={products['edge-functions'].name}
           subtitle={
             <>
               Easily write custom code
@@ -169,9 +170,9 @@ const Products = (props: any) => {
           className="!col-span-3"
         />
         <ProductCard
-          url={props.products['realtime'].url}
-          icon={props.products['realtime'].icon}
-          title={props.products['realtime'].name}
+          url={products['realtime'].url}
+          icon={products['realtime'].icon}
+          title={products['realtime'].name}
           subtitle={
             <>
               Build multiplayer experiences
@@ -195,10 +196,10 @@ const Products = (props: any) => {
         />
         <ProductCard
           alignLeft
-          url={props.products['vector'].url}
-          icon={props.products['vector'].icon}
-          title={props.products['vector'].name}
-          subtitle={props.products['vector'].description}
+          url={products['vector'].url}
+          icon={products['vector'].icon}
+          title={products['vector'].name}
+          subtitle={products['vector'].description}
           highlights={
             <ul className="flex flex-col gap-1">
               <li>
