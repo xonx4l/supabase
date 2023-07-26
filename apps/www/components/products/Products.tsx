@@ -11,10 +11,9 @@ import SectionContainer from '~/components/Layouts/SectionContainer'
 
 import ProductCard from './ProductCard'
 import DatabaseVisual from './DatabaseVisual'
-import { Solutions } from '~/data/Solutions'
 
 interface Props {
-  products: Solutions
+  products: any
 }
 
 const Products = ({ products }: Props) => {

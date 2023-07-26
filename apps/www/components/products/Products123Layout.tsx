@@ -11,7 +11,7 @@ import SectionContainer from '~/components/Layouts/SectionContainer'
 import ProductCard from './ProductCard'
 import DatabaseVisual from './DatabaseVisual'
 
-const Products = (props: any) => {
+const Products123Layout = (props: any) => {
   const router = useRouter()
   const telemetryProps = useTelemetryProps()
 
@@ -218,4 +218,4 @@ const Products = (props: any) => {
   )
 }
 
-export default Products
+export default Products123Layout
