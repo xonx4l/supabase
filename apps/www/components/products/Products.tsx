@@ -16,7 +16,7 @@ interface Props {
   products: any
 }
 
-const Products = ({ products }: Props) => {
+export default function Products({ products }: Props) {
   const router = useRouter()
   const telemetryProps = useTelemetryProps()
 
@@ -58,25 +58,6 @@ const Products = ({ products }: Props) => {
 
   return (
     <SectionContainer>
-      {/* Epic energy beam option: */}
-      {/* <div className="absolute -z-10 w-screen aspect-[1.29/1] left-[-9999px] right-[-9999px] mx-auto top-[-700px]">
-        <Image
-          src="/images/index/plasma-planet-02.jpg"
-          alt=""
-          layout="fill"
-          objectFit="contain"
-          quality={100}
-          className="rotate-180 opacity-100"
-        />
-        <Image
-          src="/images/index/gradient-bg.png"
-          alt=""
-          layout="fill"
-          objectFit="contain"
-          quality={100}
-          className="absolute rotate-180 -z-10"
-        />
-      </div> */}
       <dl className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-4 lg:gap-6 md:grid-cols-12">
         <ProductCard
           alignLeft
@@ -240,5 +221,3 @@ const Products = ({ products }: Props) => {
     </SectionContainer>
   )
 }
-
-export default Products
