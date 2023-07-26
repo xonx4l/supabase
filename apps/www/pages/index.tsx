@@ -7,7 +7,7 @@ import Hero from '~/components/Hero/Hero'
 // Import Swiper styles if swiper used on page
 import 'swiper/swiper.min.css'
 import pageData from '~/data/home/pageData'
-import Products from '../components/Products/Products'
+// import Products from '../components/Products/Products'
 
 const UseSupabaseTo = dynamic(() => import('~/components/UseSupabaseTo'))
 const Highlights = dynamic(() => import('~/components/Highlights/index'))
@@ -25,7 +25,7 @@ const Index = ({ customerStories }: Props) => {
   return (
     <Layout>
       <Hero {...pageData.heroSection} />
-      <Products products={pageData.productsSection.products} />
+      {/* <Products products={pageData.productsSection.products} /> */}
       <UseSupabaseTo {...pageData.useSupabaseTo} />
       <Highlights {...pageData.highlightsSection} />
       {/* <HomepageMetricsSection /> */}
