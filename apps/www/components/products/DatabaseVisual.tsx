@@ -1,7 +1,7 @@
-import { useBreakpoint } from 'common'
-import Image from 'next/image'
 import React, { useState } from 'react'
 import { m } from 'framer-motion'
+import Image from 'next/image'
+import { useBreakpoint } from 'common'
 
 const pathMotionConfig = {
   initial: { pathLength: 0 },

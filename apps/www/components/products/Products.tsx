@@ -16,11 +16,11 @@ interface Props {
   products: any
 }
 
-export default function Products({ products }: Props) {
+const Products = ({ products }: Props) => {
   const router = useRouter()
   const telemetryProps = useTelemetryProps()
 
-  const sendTelemetryEvent = async (product: any) => {
+  const sendTelemetryEvent = async (product: string) => {
     switch (product) {
       case 'Database':
         return await Telemetry.sendEvent(
@@ -78,7 +78,7 @@ export default function Products({ products }: Props) {
               </li>
             </ul>
           }
-          onClick={() => sendTelemetryEvent(name)}
+          onClick={() => sendTelemetryEvent(products['database'].name)}
           image={<DatabaseVisual />}
           className="col-span-6"
         />
@@ -106,7 +106,7 @@ export default function Products({ products }: Props) {
             </div>
           }
           className="col-span-3"
-          onClick={() => sendTelemetryEvent(name)}
+          onClick={() => sendTelemetryEvent(products['authentication'].name)}
         />
         <ProductCard
           url={products['storage'].url}
@@ -126,7 +126,7 @@ export default function Products({ products }: Props) {
             </div>
           }
           className="!col-span-3"
-          onClick={() => sendTelemetryEvent(name)}
+          onClick={() => sendTelemetryEvent(products['storage'].name)}
         />
         <ProductCard
           url={products['edge-functions'].url}
@@ -139,7 +139,7 @@ export default function Products({ products }: Props) {
               servers.
             </>
           }
-          onClick={() => sendTelemetryEvent(name)}
+          onClick={() => sendTelemetryEvent(products['edge-functions'].name)}
           image={
             <div className="absolute inset-0 z-0">
               <Image
@@ -165,6 +165,7 @@ export default function Products({ products }: Props) {
               synchronization.
             </>
           }
+          onClick={() => sendTelemetryEvent(products['realtime'].name)}
           image={
             <div className="absolute inset-0 z-0">
               <Image
@@ -198,7 +199,7 @@ export default function Products({ products }: Props) {
               </li>
             </ul>
           }
-          onClick={() => sendTelemetryEvent(name)}
+          onClick={() => sendTelemetryEvent(products['vector'].name)}
           image={
             <div className="absolute inset-0 z-0">
               <Image
@@ -221,3 +222,5 @@ export default function Products({ products }: Props) {
     </SectionContainer>
   )
 }
+
+export default Products
