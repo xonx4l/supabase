@@ -11,7 +11,7 @@ export interface Solutions {
   [product: string]: Solution
 }
 
-const solutions: any = {
+export const solutions: any = {
   database: {
     name: 'Database',
     icon: `

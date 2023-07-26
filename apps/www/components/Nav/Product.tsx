@@ -1,5 +1,5 @@
 import React from 'react'
-import SolutionsData from 'data/Solutions'
+import SolutionsData from '~/data/solutions'
 import CustomerStoriesData from 'data/CustomerStories.json'
 import { useRouter } from 'next/router'
 import ProductIcon from '../ProductIcon'

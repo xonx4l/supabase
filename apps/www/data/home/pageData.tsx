@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import VideoWithHighlights from '~/components/VideoWithHighlights'
 import UseAnyStack from '~/components/Highlights/UseAnyStack'
-import solutions from '../Solutions'
 import { frameworks } from '../frameworks'
+import { solutions } from '../solutions'
 
 export default {
   heroSection: {

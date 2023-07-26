@@ -1,5 +1,5 @@
 import { Accordion, Button, IconCheck, Select } from 'ui'
-import Solutions from 'data/Solutions'
+import Solutions from '~/data/solutions'
 import { NextSeo } from 'next-seo'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
