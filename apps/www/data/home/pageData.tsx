@@ -93,7 +93,7 @@ export default {
     ],
   },
   productsSection: {
-    products: { ...solutions },
+    products: solutions,
   },
   dashboardFeatures: {
     title: (
