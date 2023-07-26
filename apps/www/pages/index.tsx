@@ -8,6 +8,7 @@ import Hero from '~/components/Hero/Hero'
 import 'swiper/swiper.min.css'
 import pageData from '~/data/home/pageData'
 
+//@ts-ignore
 const Products = dynamic(() => import('~/components/Products/Products'))
 const UseSupabaseTo = dynamic(() => import('~/components/UseSupabaseTo'))
 const Highlights = dynamic(() => import('~/components/Highlights/index'))
