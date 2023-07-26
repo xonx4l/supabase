@@ -7,9 +7,8 @@ import Hero from '~/components/Hero/Hero'
 // Import Swiper styles if swiper used on page
 import 'swiper/swiper.min.css'
 import pageData from '~/data/home/pageData'
+import Products from '../components/Products/Products'
 
-//@ts-ignore
-const Products = dynamic(() => import('~/components/Products/Products'))
 const UseSupabaseTo = dynamic(() => import('~/components/UseSupabaseTo'))
 const Highlights = dynamic(() => import('~/components/Highlights/index'))
 const TimedTabsSection = dynamic(() => import('~/components/Sections/TimedTabsSection'))
