@@ -1,3 +1,4 @@
+import React from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Telemetry from '~/lib/telemetry'
@@ -12,7 +13,11 @@ import ProductCard from './ProductCard'
 import DatabaseVisual from './DatabaseVisual'
 import { Solutions } from '~/data/Solutions'
 
-const Products = ({ products }: { products: Solutions }) => {
+interface Props {
+  products: Solutions
+}
+
+const Products = ({ products }: Props) => {
   const router = useRouter()
   const telemetryProps = useTelemetryProps()
 
