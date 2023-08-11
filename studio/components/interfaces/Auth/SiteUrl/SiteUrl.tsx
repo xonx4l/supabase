@@ -2,7 +2,7 @@ import { PermissionAction } from '@supabase/shared-types/out/constants'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import { Form, Input } from 'ui'
-import { boolean, number, object, string } from 'yup'
+import { boolean, InferType, number, object, string } from 'yup'
 
 import {
   FormActions,
@@ -11,7 +11,29 @@ import {
   FormSection,
   FormSectionContent,
 } from 'components/ui/Forms'
-import { useCheckPermissions, useSelectedProject, useStore } from 'hooks'
+import { FormikHelpers } from 'formik'
+import { useCheckPermissions, useStore } from 'hooks'
+
+const schema = object({
+  DISABLE_SIGNUP: boolean().required(),
+  SITE_URL: string().required('Must have a Site URL'),
+  JWT_EXP: number()
+    .max(604800, 'Must be less than 604800')
+    .required('Must have a JWT expiry value'),
+  REFRESH_TOKEN_ROTATION_ENABLED: boolean().required(),
+  SECURITY_REFRESH_TOKEN_REUSE_INTERVAL: number()
+    .min(0, 'Must be a value more than 0')
+    .required('Must have a Reuse Interval value'),
+  SECURITY_CAPTCHA_ENABLED: boolean().required(),
+  SECURITY_CAPTCHA_PROVIDER: string().required(),
+  SECURITY_CAPTCHA_SECRET: string().when('SECURITY_CAPTCHA_ENABLED', {
+    is: true,
+    then: () => string().required('Must have a Captcha secret'),
+    otherwise: (schema) => schema,
+  }),
+})
+
+type SiteURLSchema = InferType<typeof schema>
 
 const SiteUrl = observer(() => {
   const { authConfig, ui } = useStore()
@@ -20,7 +42,7 @@ const SiteUrl = observer(() => {
   const formId = 'auth-config-general-form'
   const canUpdateConfig = useCheckPermissions(PermissionAction.UPDATE, 'custom_config_gotrue')
 
-  const INITIAL_VALUES = {
+  const INITIAL_VALUES: SiteURLSchema = {
     DISABLE_SIGNUP: !authConfig.config.DISABLE_SIGNUP,
     JWT_EXP: authConfig.config.JWT_EXP,
     SITE_URL: authConfig.config.SITE_URL,
@@ -31,24 +53,10 @@ const SiteUrl = observer(() => {
     SECURITY_CAPTCHA_SECRET: authConfig.config.SECURITY_CAPTCHA_SECRET || '',
   }
 
-  const schema = object({
-    DISABLE_SIGNUP: boolean().required(),
-    SITE_URL: string().required('Must have a Site URL'),
-    JWT_EXP: number()
-      .max(604800, 'Must be less than 604800')
-      .required('Must have a JWT expiry value'),
-    REFRESH_TOKEN_ROTATION_ENABLED: boolean().required(),
-    SECURITY_REFRESH_TOKEN_REUSE_INTERVAL: number()
-      .min(0, 'Must be a value more than 0')
-      .required('Must have a Reuse Interval value'),
-    SECURITY_CAPTCHA_ENABLED: boolean().required(),
-    SECURITY_CAPTCHA_SECRET: string().when('SECURITY_CAPTCHA_ENABLED', {
-      is: true,
-      then: string().required('Must have a Captcha secret'),
-    }),
-  })
-
-  const onSubmit = async (values: any, { setSubmitting, resetForm }: any) => {
+  const onSubmit = async (
+    values: SiteURLSchema,
+    { setSubmitting, resetForm }: FormikHelpers<SiteURLSchema>
+  ) => {
     const payload = { ...values }
     payload.DISABLE_SIGNUP = !values.DISABLE_SIGNUP
 
@@ -60,7 +68,7 @@ const SiteUrl = observer(() => {
         category: 'success',
         message: `Successfully updated settings`,
       })
-      resetForm({ values: values, initialValues: values })
+      resetForm({ values: values })
     } else {
       ui.setNotification({
         category: 'error',
