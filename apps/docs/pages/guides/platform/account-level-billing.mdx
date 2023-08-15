@@ -1,0 +1,23 @@
+import Layout from '~/layouts/DefaultGuideLayout'
+
+export const meta = {
+  id: 'account-level-billing',
+  title: 'Account-Level-Billing',
+  description: 'asdasd',
+}
+
+<Admonition type="note">This is for users considering or on Enterprise plan only.</Admonition>
+
+By default, each organization has a subscription and a plan. For our Enterprise customers, we offer Account-level-Billing, so multiple organizations can point to a single Enterprise subscription, further simplifying billing.
+
+![Account-Level-Billing: Overview](/docs/img/guides/platform/account-level-billing.png)
+
+With Account-Level-Billing, all organizations and projects within the subscription are recognized as Enterprise and your support tier or security addons propagate to all projects.
+
+For the usage-billing, we’ll sum up the usage from all organizations and projects. You can still break down the usage per organization or per project by going to the [organization billing page](https://supabase.com/dashboard/org/_/billing).
+
+Account-Level-Billing is not self-serve. Please reach out to your customer success contact person to set this up.
+
+export const Page = ({ children }) => <Layout meta={meta} children={children} />
+
+export default Page
