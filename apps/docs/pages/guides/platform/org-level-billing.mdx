@@ -43,7 +43,7 @@ Quotas for unified egress, applies to your entire organization:
 
 With legacy billing, you had different quotas for different types of egress, i.e. on the Pro plan, you had 50GB of database egress and 200GB of storage egress included. If you weren't using storage at all, you'd miss out on the included usage.
 
-## Quota/Features per organization, not per project
+## Quota/Features per organization
 
 With Organization-Level-Billing, the quotas and features are for your entire organization. Independent of how many projects you launch, your included quota stays the same. For billing purposes, we sum up the usage from all projects for your monthly invoice.
 
@@ -114,7 +114,7 @@ Compute Credits do not apply to other usage fees like egress, database size, ...
 
 Additionally, Compute Credits reset every month and do not accumulate, in case you're not running any projects.
 
-With Legacy Billing, you used to pay $25 for every single Pro plan project in an organization. Previously, we gave you a free “Starter” instance on paid plans - we're now giving you $10 in [Compute Credits](/docs/guides/platform/org-level-billing#compute-credits) instead, to cover the first instance. You end up not paying extra for the first project inside your paid plan organisation - just like before. In case you add a Compute Add-On to your first project, you also end up paying exactly the same as before.
+With Legacy Billing, you used to pay $25 for every single Pro plan project in an organization. Previously, we gave you a free “Starter” instance on paid plans - we're now giving you $10 in Compute Credits instead, to cover the first instance. You end up not paying extra for the first project inside your paid plan organisation - just like before. In case you add a Compute Add-On to your first project, you also end up paying exactly the same as before.
 
 ## Comparing Legacy vs. Organization-Level-Billing
 
@@ -124,7 +124,7 @@ If you are using Legacy Billing and have a single project in you're organization
 
 Here are some examples on how the new Organization-Level-Billing looks like compared to the legacy project-level billing.
 
-#### Multiple free plan projects
+### Multiple free plan projects
 
 Let's say you currently have two free plan projects in your organization. As we're not changing the amount of free projects you can have, you can simply migrate that organization to a free plan. The most important change is the quota being for your entire organization now. Rather than each project having it's individual quota, your organization will now have the following limits:
 
@@ -142,7 +142,7 @@ Let's say you currently have two free plan projects in your organization. As we'
 
 If you're only using a single project, you could then use 1GB of database size. If you launch a second instance, the sum of both projects can't exceed 1GB.
 
-#### Multiple pro plan projects
+### Multiple pro plan projects
 
 If you're currently running multiple Pro plan projects, each one costs you $25 for the Pro plan + usage + addons. With Organization-Level-Billing, you only pay for the Pro plan once, but you also only get the included quota once.
 
@@ -186,7 +186,7 @@ If you wish to keep the same quota for each project, you'd have to separate your
 
 See [Project Transfers](/docs/guides/platform/project-transfer) to move projects across organizations.
 
-#### Mix of free and pro plan projects
+### Mix of free and pro plan projects
 
 If you're currently running a mix of Free and Pro plan projects and migrate that to a Pro plan organization, your base fee might be higher, but you'll also get the [benefits](https://supabase.com/pricing) of the paid plan for **all** projects including no auto-pausing, daily backups, storage image transformations, 7-day log retention.
 
@@ -231,16 +231,13 @@ Head over to your [organization billing settings](https://supabase.com/dashboard
   </summary>
 
 We are not changing your 2 free project limit. You can either have two organizations on a free plan with one project each, or one organization on a free plan with two projects inside.
-
 </details>
 
 <details>
   <summary>
     <i>What happens to the spend cap?</i>
   </summary>
-  The [spend cap](/docs/guides/platform/spend-cap) still exists, it's just set on the organization-level and not per project. Head over
-  to your [organization billing settings](https://supabase.com/dashboard/org/_/billing) to toggle your
-  spend cap. We're working on more fine-grained control over costs to supersede the spend cap.
+  The [spend cap](/docs/guides/platform/spend-cap) still exists, it's just set on the organization-level and not per project. Head over to your [organization billing settings](https://supabase.com/dashboard/org/_/billing) to toggle you  spend cap. We're working on more fine-grained control over costs to supersede the spend cap.
 </details>
 
 <details>
@@ -255,7 +252,7 @@ We are not changing your 2 free project limit. You can either have two organizat
   <summary>
     <i>How do I know if I'm using the new Organization-Level-Billing?</i>
   </summary>
- If you head over to your [organizations' billing settings](https://supabase.com/dashboard/org/_/billing) and it displays your organization plan at the top, it means you already use the new Organization-Level-Billing. If it shows you the section to migrate the project to the new billing, you're using the old project-level billing.
+If you head over to your [organizations' billing settings](https://supabase.com/dashboard/org/_/billing) and it displays your organization plan at the top, it means you already use the new Organization-Level-Billing. If it shows you the section to migrate the project to the new billing, you're using the old project-level billing.
 
 ![Organization-Level-Billing: View plan](/docs/img/guides/platform/org-billing-plan.png)
 
