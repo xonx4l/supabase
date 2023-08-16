@@ -6,23 +6,28 @@ export const meta = {
   description: 'asdasd',
 }
 
-Supabase has organizations and projects. An organization may contain multiple projects. A project is a dedicated Supabase instance with all of its sub-services including Storage, Auth, Functions and Realtime. Previously, each project had an individual subscription, a plan and addons.
+<Admonition type="note">
+Org-Level-Billing was introduced on August xth 2023. Read the [announcement](https://announce.ment) for more context.
+</Admonition>
 
-We are moving subscriptions and the subscription plan to the organization level. By moving the subscription to the organization level, each organization only has a single subscription with a single plan (Free, Pro, Team or Enterprise). Project addons such as [Compute](/docs/guides/platform/compute-add-ons), [Custom Domains](/docs/guides/platform/custom-domains) and [PITR](/docs/guides/platform/backups#point-in-time-recovery) are still configured per project and are added to your organization subscription.
+Supabase has organizations and projects. An organization may contain multiple projects. A project is a dedicated Supabase instance with all of its sub-services including Storage, Auth, Functions and Realtime.
 
-**Before**
+**Legacy Billing**
+
+If you created your organization before August xth 2023, each project had an individual subscription, a plan and addons.
 
 ![Billing Before](/docs/img/guides/platform/org-billing-before.png)
 
-**After**
+
+**New Organization-Level-Billing**
+
+With organization-level-billing, each organization only has a single subscription with a single plan (Free, Pro, Team or Enterprise). Project addons such as [Compute](/docs/guides/platform/compute-add-ons), [Custom Domains](/docs/guides/platform/custom-domains) and [PITR](/docs/guides/platform/backups#point-in-time-recovery) are still configured per project and are added to your organization subscription.
 
 ![Billing: After](/docs/img/guides/platform/org-billing-after.png)
 
-With this change in billing, we also lay the groundwork for upcoming features like [environment branching](https://supabase.com/blog/supabase-local-dev#branching-and-preview-environments), usage notifications, more sophisticated cost control and much more.
-
 ## Unified Egress
 
-Previously, you had different quotas for different types of egress, i.e. on the Pro plan, you get 50GB of database egress and 200GB of storage egress included. If you're not using storage at all, you're missing out on the included usage.
+With legacy billing, you had different quotas for different types of egress, i.e. on the Pro plan, you had 50GB of database egress and 200GB of storage egress included. If you weren't using storage at all, you'd miss out on the included usage.
 
 In an effort to provide a more fair egress quota for all users, we are unifying egress to be a single usage-based item. You get a total quota, i.e. 250GB on the Pro plan, and can use it for anything, be it Storage, Realtime, Auth, Functions or Database.
 
@@ -30,7 +35,7 @@ While the quota and billing is based on the unified egress, you can still see a 
 
 ![Unified Egress](/docs/img/guides/platform/unified-egress.png)
 
-New quotas for unified egress, applies to your entire organization:
+Quotas for unified egress, applies to your entire organization:
 
 | Plan       | Total Egress Quota |
 | ---------- | ------------------ |
@@ -41,15 +46,15 @@ New quotas for unified egress, applies to your entire organization:
 
 ## Quota/Features per organization, not per project
 
-Previously, each project had an individual plan and the included quotas and features were on a project level. With Organization-Level-Billing, the quotas and features are for your entire organization. Independent of how many projects you launch, your included quota stays the same. For billing purposes, we sum up the usage from all projects for your monthly invoice.
+With Organization-Level-Billing, the quotas and features are for your entire organization. Independent of how many projects you launch, your included quota stays the same. For billing purposes, we sum up the usage from all projects for your monthly invoice.
 
 As the plan is set for your entire organization, upgrading your organization to a paid plan means that you unlock the benefits of the paid plan for **all** projects inside your organizations, i.e. no project in your organization will be paused on a Pro plan.
 
-New Quotas for Organization-Level-Billing, these quotas apply to your entire organization:
+Quotas for Organization-Level-Billing, these quotas apply to your entire organization:
 
 | Metric                     | Free                     | Pro/Team                                    | Enterprise |
 | -------------------------- | ------------------------ | ------------------------------------------- | ---------- |
-| Egress\*                   | 10GB                     | 250GB included, then $0.09 per GB           | Custom     |
+| Egress                     | 10GB                     | 250GB included, then $0.09 per GB           | Custom     |
 | Database Size              | 1GB                      | 8GB included, then $0.125 per GB            | Custom     |
 | Storage Size               | 2GB                      | 100GB included, then $0.021 per GB          | Custom     |
 | Monthly Active Users       | 50.000 MAU               | 100.000 MAU included, then $0.00325 per MAU | Custom     |
@@ -59,17 +64,14 @@ New Quotas for Organization-Level-Billing, these quotas apply to your entire org
 | Realtime Message Count     | 2.000.000                | 5.000.000 included, then $2.5 per 1.000.000 | Custom     |
 | Realtime Peak Connections  | 200                      | 500 included, then $10 per 1000             | Custom     |
 
-\*We no longer separate storage and database egress, see [above](/docs/guides/platform/org-level-billing#unified-egress) for unified egress quota.
-
-Besides the unified egress, the quota for the Pro and Team plan have not changed. We are also not changing any fees for over-usage.
 
 You can launch as many organizations as you want, so you can still create two organizations on the Pro plan for $25 each and launch a single project in each one. You'd have the same quotas and pricing as of today.
+
+With legacy billing, each project had an individual plan and the included quotas and features were on a project level. Besides the unified egress, the quota for the Pro and Team plan have not changed. We are also not changing any fees for over-usage.
 
 ## Usage-based billing for compute
 
 Each Supabase project comes with a dedicated server. By default, your instance runs on the Starter Compute instance. You can upgrade your compute size in your [project settings](https://supabase.com/dashboard/project/_/settings/addons).
-
-Previously, when you wanted to upgrade the [Compute Add-On](/docs/guides/platform/compute-add-ons), you immediately prepay the prorated amount (days left in your current billing cycle) and you always paid upfront for the entire month when your billing cycle resets. When you downgrade, you got the appropriate credits for unused time. Full-month upfront payments are annoying, especially when you just want to do a temporary upgrade. We've heard your feedback and are moving billing for compute to hourly usage.
 
 With Organization-Level-Billing you won't get an immediate charge upfront when changing compute, instead we'll bill you based on compute runtime hours when your billing cycle resets.
 
@@ -94,16 +96,18 @@ Pricing for Compute Hours:
 | 12XL          | $3.836       | ~$2800                  |
 | 16XL          | $5.12        | ~$3730                  |
 
+
+With Legacy Billing, when you wanted to upgrade the [Compute Add-On](/docs/guides/platform/compute-add-ons), you immediately prepay the prorated amount (days left in your current billing cycle) and you always paid upfront for the entire month when your billing cycle resets. When you downgrade, you got the appropriate credits for unused time.
+
 <Admonition type="note">
 You can still have two projects for free, either in a single free plan org or in two free plan orgs with one project each.
 
 On paid plans, the first project comes with no additional costs. If you have an organisation on the Pro plan and you launch your first project, you're paying $25/month, just like before.
-
 </Admonition>
 
 ### Compute Credits
 
-With Organization-Level-Billing, you are no longer paying $25 for every additonal Pro plan project in your organisation, but rather just for the additional compute. Previously, we gave you a free “Starter” instance on paid plans - we're now giving you $10 in [Compute Credits](/docs/guides/platform/org-level-billing#compute-credits) instead, to cover the first instance. You end up not paying extra for the first project inside your paid plan organisation - just like before. In case you add a Compute Add-On to your first project, you also end up paying exactly the same as before. Paid plans come with $10 of Compute Credits to cover one Starter instance or parts of any other [Compute add-on](/docs/guides/platform/compute-add-ons).
+Paid plans come with $10 of Compute Credits to cover one Starter instance or parts of any other [Compute add-on](/docs/guides/platform/compute-add-ons).
 
 Compute Credits are deducted from your Compute Usage. You can launch as many instances as you want on paid plans and we'll bill based on the compute hours. If you upgrade an instance for 24 hours, you'll only be billed for those 24 hours of additional compute. Compute hours are billed when you do plan up/downgrades (resets the billing cycle) or whenever your billing cycle resets once a month.
 
@@ -111,11 +115,19 @@ Compute Credits do not apply to other usage fees like egress, database size, ...
 
 Additionally, Compute Credits reset every month and do not accumulate, in case you're not running any projects.
 
-## Examples
+With Legacy Billing, you used to pay $25 for every single Pro plan project in an organization. Previously, we gave you a free “Starter” instance on paid plans - we're now giving you $10 in [Compute Credits](/docs/guides/platform/org-level-billing#compute-credits) instead, to cover the first instance. You end up not paying extra for the first project inside your paid plan organisation - just like before. In case you add a Compute Add-On to your first project, you also end up paying exactly the same as before.
 
-If you just have a single project in your organization, you won't really be affected. Here are some examples on how the new organization-level billing looks like compared to the previous project-level billing.
+## Legacy Billing
 
-### Multiple free plan projects
+### Invoice Breakdown Examples
+
+<Admonition type="note">
+If you are using Legacy Billing and have a single project in you're org, there is no change in pricing or quota.
+</Admonition>
+
+Here are some examples on how the new organization-level billing looks like compared to the legacy project-level billing.
+
+#### Multiple free plan projects
 
 Let's say you currently have two free plan projects in your organization. As we're not changing the amount of free projects you can have, you can simply migrate that organization to a free plan. The most important change is the quota being for your entire organization now. Rather than each project having it's individual quota, your organization will now have the following limits:
 
@@ -133,11 +145,11 @@ Let's say you currently have two free plan projects in your organization. As we'
 
 If you're only using a single project, you could then use 1GB of database size. If you launch a second instance, the sum of both projects can't exceed 1GB.
 
-### Multiple pro plan projects
+#### Multiple pro plan projects
 
 If you're currently running multiple Pro plan projects, each one costs you $25 for the Pro plan + usage + addons. With Organization-Level-Billing, you only pay for the Pro plan once, but you also only get the included quota once.
 
-**Before**
+**Invoice Breakdown with Legacy Billing**
 
 | Line Item              | Price |
 | ---------------------- | ----- |
@@ -146,7 +158,7 @@ If you're currently running multiple Pro plan projects, each one costs you $25 f
 | Pro Plan for Project 3 | $25   |
 | Total                  | $75   |
 
-**After**
+**Invoice Breakdown with Organization-Level-Billing**
 
 | Line Item                 | Price |
 | ------------------------- | ----- |
@@ -163,7 +175,7 @@ You're paying less for multiple projects on the Pro plan. However, you're no lon
 
 | Usage Item                 | Quota                                       |
 | -------------------------- | ------------------------------------------- |
-| Egress\*                   | 250GB included, then $0.09 per GB           |
+| Egress                     | 250GB included, then $0.09 per GB           |
 | Database Size              | 8GB included, then $0.125 per GB            |
 | Storage Size               | 100GB included, then $0.021 per GB          |
 | Monthly Active Users       | 100.000 MAU included, then $0.00325 per MAU |
@@ -177,11 +189,11 @@ If you wish to keep the same quota for each project, you'd have to separate your
 
 See [Project Transfers](/docs/guides/platform/project-transfer) to move projects across organizations.
 
-### Mix of free and pro plan projects
+#### Mix of free and pro plan projects
 
 If you're currently running a mix of Free and Pro plan projects and migrate that to a Pro plan organization, your base fee might be higher, but you'll also get the [benefits](https://supabase.com/pricing) of the paid plan for **all** projects including no auto-pausing, daily backups, storage image transformations, 7-day log retention.
 
-**Before**
+**Invoice Breakdown with Legacy Billing**
 
 | Line Item               | Price |
 | ----------------------- | ----- |
@@ -191,7 +203,7 @@ If you're currently running a mix of Free and Pro plan projects and migrate that
 | Free Plan for Project 4 | $0    |
 | Total                   | $50   |
 
-**After**
+**Invoice Breakdown with Organization-Level-Billing**
 
 | Line Item                 | Price |
 | ------------------------- | ----- |
@@ -206,7 +218,7 @@ All [benefits](https://supabase.com/pricing) of the Pro plan apply to all projec
   You can transfer projects to a free organization, in case you haven't used up your 2 free project limit, if you don't want additional projects on the Pro plan. See [Project Transfers](/docs/guides/platform/project-transfer).
 </Admonition>
 
-## Self-Serve-Migration
+### Self-Serve-Migration
 
 While we will roll out the new billing for all users during the next few weeks, you can pro-actively migrate, too. If you're not using Organization-Level-Billing yet, you may initiate the migration to Organization-Level-Billing yourself. We'll also actively reach out to you, in case you have multiple paid projects or a mix of paid and non-paid projects.
 
@@ -214,7 +226,7 @@ Head over to your [organization billing settings](https://supabase.com/dashboard
 
 ![Self-Serve migration](/docs/img/guides/platform/org-billing-migration.png)
 
-## FAQ
+### FAQ
 
 <details>
   <summary>
