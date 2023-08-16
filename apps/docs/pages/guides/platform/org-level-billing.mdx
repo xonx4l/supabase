@@ -27,8 +27,6 @@ With organization-level-billing, each organization only has a single subscriptio
 
 ## Unified Egress
 
-With legacy billing, you had different quotas for different types of egress, i.e. on the Pro plan, you had 50GB of database egress and 200GB of storage egress included. If you weren't using storage at all, you'd miss out on the included usage.
-
 In an effort to provide a more fair egress quota for all users, we are unifying egress to be a single usage-based item. You get a total quota, i.e. 250GB on the Pro plan, and can use it for anything, be it Storage, Realtime, Auth, Functions or Database.
 
 While the quota and billing is based on the unified egress, you can still see a breakdown of the different types of egress on your [organization usage page](https://supabase.com/dashboard/org/_/usage).
@@ -43,6 +41,8 @@ Quotas for unified egress, applies to your entire organization:
 | Pro        | 250 GB             |
 | Team       | 250 GB             |
 | Enterprise | Custom             |
+
+With legacy billing, you had different quotas for different types of egress, i.e. on the Pro plan, you had 50GB of database egress and 200GB of storage egress included. If you weren't using storage at all, you'd miss out on the included usage.
 
 ## Quota/Features per organization, not per project
 
