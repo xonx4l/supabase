@@ -18,10 +18,9 @@ If you created your organization before August xth 2023, each project had an ind
 
 ![Billing Before](/docs/img/guides/platform/org-billing-before.png)
 
-
 **New Organization-Level-Billing**
 
-With organization-level-billing, each organization only has a single subscription with a single plan (Free, Pro, Team or Enterprise). Project addons such as [Compute](/docs/guides/platform/compute-add-ons), [Custom Domains](/docs/guides/platform/custom-domains) and [PITR](/docs/guides/platform/backups#point-in-time-recovery) are still configured per project and are added to your organization subscription.
+With Organization-Level-Billing, each organization only has a single subscription with a single plan (Free, Pro, Team or Enterprise). Project addons such as [Compute](/docs/guides/platform/compute-add-ons), [Custom Domains](/docs/guides/platform/custom-domains) and [PITR](/docs/guides/platform/backups#point-in-time-recovery) are still configured per project and are added to your organization subscription.
 
 ![Billing: After](/docs/img/guides/platform/org-billing-after.png)
 
@@ -97,10 +96,10 @@ Pricing for Compute Hours:
 | 16XL          | $5.12        | ~$3730                  |
 
 
-With Legacy Billing, when you wanted to upgrade the [Compute Add-On](/docs/guides/platform/compute-add-ons), you immediately prepay the prorated amount (days left in your current billing cycle) and you always paid upfront for the entire month when your billing cycle resets. When you downgrade, you got the appropriate credits for unused time.
+With Legacy Billing, when you wanted to upgrade the [Compute Add-On](/docs/guides/platform/compute-add-ons), you immediately prepaid the prorated amount (days left in your current billing cycle) and you always paid upfront for the entire month when your billing cycle resets. When you downgraded, you got the appropriate credits for unused time.
 
 <Admonition type="note">
-You can still have two projects for free, either in a single free plan org or in two free plan orgs with one project each.
+You can still have two projects for free, either in a single free plan organization or in two free plan orgs with one project each.
 
 On paid plans, the first project comes with no additional costs. If you have an organisation on the Pro plan and you launch your first project, you're paying $25/month, just like before.
 </Admonition>
@@ -111,21 +110,19 @@ Paid plans come with $10 of Compute Credits to cover one Starter instance or par
 
 Compute Credits are deducted from your Compute Usage. You can launch as many instances as you want on paid plans and we'll bill based on the compute hours. If you upgrade an instance for 24 hours, you'll only be billed for those 24 hours of additional compute. Compute hours are billed when you do plan up/downgrades (resets the billing cycle) or whenever your billing cycle resets once a month.
 
-Compute Credits do not apply to other usage fees like egress, database size, ... They solely apply to Compute usage. You will be charged for compute hours independent of your [Spend Cap](/docs/guides/platform/spend-cap).
+Compute Credits do not apply to other usage fees like egress, database size, ... They solely apply to Compute usage.
 
 Additionally, Compute Credits reset every month and do not accumulate, in case you're not running any projects.
 
 With Legacy Billing, you used to pay $25 for every single Pro plan project in an organization. Previously, we gave you a free “Starter” instance on paid plans - we're now giving you $10 in [Compute Credits](/docs/guides/platform/org-level-billing#compute-credits) instead, to cover the first instance. You end up not paying extra for the first project inside your paid plan organisation - just like before. In case you add a Compute Add-On to your first project, you also end up paying exactly the same as before.
 
-## Legacy Billing
-
-### Invoice Breakdown Examples
+## Comparing Legacy vs. Organization-Level-Billing
 
 <Admonition type="note">
-If you are using Legacy Billing and have a single project in you're org, there is no change in pricing or quota.
+If you are using Legacy Billing and have a single project in you're organization, there is no change in pricing or quota.
 </Admonition>
 
-Here are some examples on how the new organization-level billing looks like compared to the legacy project-level billing.
+Here are some examples on how the new Organization-Level-Billing looks like compared to the legacy project-level billing.
 
 #### Multiple free plan projects
 
@@ -241,16 +238,24 @@ We are not changing your 2 free project limit. You can either have two organizat
   <summary>
     <i>What happens to the spend cap?</i>
   </summary>
-  The spend cap still exists, it's just set on the organization-level and not per project. Head over
+  The [spend cap](/docs/guides/platform/spend-cap) still exists, it's just set on the organization-level and not per project. Head over
   to your [organization billing settings](https://supabase.com/dashboard/org/_/billing) to toggle your
   spend cap. We're working on more fine-grained control over costs to supersede the spend cap.
 </details>
 
 <details>
   <summary>
-    <i>How do I know if I'm using the new organization-level billing?</i>
+    <i>If I'm exceeding quota, can I move out a single project to a different organization?</i>
   </summary>
- If you head over to your [organizations' billing settings](https://supabase.com/dashboard/org/_/billing) and it displays your organization plan at the top, it means you already use the new organization-level billing. If it shows you the section to migrate the project to the new billing, you're using the old project-level billing.
+ Yes, with the new [Project Transfers]((/docs/guides/platform/project-transfer)) you can move any project to a different organization.
+</details>
+
+
+<details>
+  <summary>
+    <i>How do I know if I'm using the new Organization-Level-Billing?</i>
+  </summary>
+ If you head over to your [organizations' billing settings](https://supabase.com/dashboard/org/_/billing) and it displays your organization plan at the top, it means you already use the new Organization-Level-Billing. If it shows you the section to migrate the project to the new billing, you're using the old project-level billing.
 
 ![Organization-Level-Billing: View plan](/docs/img/guides/platform/org-billing-plan.png)
 
