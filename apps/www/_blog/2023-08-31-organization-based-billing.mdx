@@ -50,9 +50,9 @@ With Organization-based Billing, the quotas and features will granted across you
 
 As the plan is set for your entire organization, upgrading your organization to a paid plan means that you unlock the benefits of the paid plan for **all** projects inside your organizations, i.e. no project in your organization will be paused on a Pro plan. For example - you get email support for every project inside that org, rather than just a single project.
 
-You can launch as many organizations as you want. For example, you can create two organizations, each on the Pro plan for $25 each and launch a single project in each. This provides the same quotas and pricing that you’d receive today. Importantly, each subsequent database inside that Organization would cost xxx, rather than $25.
+You can launch as many organizations as you want. For example, you can create two organizations, each on the Pro plan for $25 each and launch a single project in each. This provides the same quotas and pricing that you’d receive today. Importantly, each subsequent database inside that Organization will cost $0.01344/hour (roughly $10 per month), rather than $25.
 
-Read more about quotas and Organization-based Billing including examples in our [docs](https://supabase.com/docs/guides/platform/org-based-billing).
+Read more about quotas and Organization-based Billing including examples in our [docs](https://supabase.com/docs/guides/platform/organization-based-billing).
 
 ## Free plan
 
@@ -72,7 +72,7 @@ Most importantly, there is only one change that affects the free plan: you recei
 
 We’re giving you an extra 1GB of egress for free and, as an added benefit, it’s unified across your org. This means that if you aren’t using Supabase Storage, you get even more Database Egress.
 
-If you are currently running 2 free projects however, **\*this does require some work from you**. **\***Because we are now working on an Org-level, instead of Projects, you will need to:
+If you are currently running 2 free projects however, **this does require some work from you**. Because we are now working on an Org-level, instead of Projects, you will need to:
 
 1. Create a new “Free org”
 2. Transfer one of your free projects into the newly-created org
@@ -89,11 +89,11 @@ With Organization-based Billing you won’t get an immediate charge upfront when
 
 If you launch a second or third instance on your paid plan, it just adds additional compute hours that we’ll bill you on.
 
-<aside>
+<div className="bg-gray-300 rounded-lg px-6 py-2 italic">
 We only count compute usage for instances that are active. Paused projects do not count towards compute usage.
-</aside>
+</div>
 
-To read more about usage-based billing for compute, head over to the [docs](https://supabase.com/docs/guides/platform/org-based-billing#usage-based-billing-for-compute).
+To read more about usage-based billing for compute, head over to the [docs](https://supabase.com/docs/guides/platform/organization-based-billing#usage-based-billing-for-compute).
 
 ## Unified Egress
 
@@ -113,7 +113,7 @@ With Organization-based Billing, the amount of invoices decreases greatly. Launc
 
 ## Project Transfers
 
-A [highly requested feature](https://github.com/orgs/supabase/discussions/6681) since we first launched Supabase has been the ability to transfer projects between organizations. To date this hasn’t been possible due to subscriptions being tied to specific projects. We know a lot of users need to transfer projects and are happy to say that [Organization-based Billing](https://supabase.com/docs/guides/platform/org-based-billing) will finally make this possible without needing to do a project migration via pgdump or the like.
+A [highly requested feature](https://github.com/orgs/supabase/discussions/6681) since we first launched Supabase has been the ability to transfer projects between organizations. To date this hasn’t been possible due to subscriptions being tied to specific projects. We know a lot of users need to transfer projects and are happy to say that [Organization-based Billing](https://supabase.com/docs/guides/platform/organization-based-billing) will finally make this possible without needing to do a project migration via pgdump or the like.
 
 ![Screenshot 2023-07-10 at 16.31.42.png](/images/blog/2023-08-31-org-billing/project-transfer-overview.png)
 
@@ -121,7 +121,7 @@ Read more about [Project Transfers](https://supabase.com/docs/guides/platform/pr
 
 ## Self-Serve Team Plan
 
-We did a soft launch of the [Team Plan](https://supabase.com/pricing) in June. With the previous billing, it required manual adjustments of the subscriptions as all projects are supposed to be covered by the Team plan, whereas you’re only paying $599 for the plan once. This required a human in the loop to communicate the confusing state of billing and also do the adjustments. With [Organization-based Billing](https://supabase.com/docs/guides/platform/org-based-billing) the Team Plan becomes fully self-serve. Users can upgrade a Free/Pro organization to Team plan or downgrade to a Pro/Free plan from a Team plan organization. Main benefits of the Team plan include:
+We did a soft launch of the [Team Plan](https://supabase.com/pricing) in June. With the previous billing, it required manual adjustments of the subscriptions as all projects are supposed to be covered by the Team plan, whereas you’re only paying $599 for the plan once. This required a human in the loop to communicate the confusing state of billing and also do the adjustments. With [Organization-based Billing](https://supabase.com/docs/guides/platform/organization-based-billing) the Team Plan becomes fully self-serve. Users can upgrade a Free/Pro organization to Team plan or downgrade to a Pro/Free plan from a Team plan organization. Main benefits of the Team plan include:
 
 - Additional Organization member roles
 - Daily backups stored for 14 days
@@ -165,9 +165,17 @@ There is much much more and we’re determined to make billing as seamless, fric
 ## FAQ
 
 - What happens to the 2 free plan projects?
-  We are not changing your 2 free project limit. You can either have two organizations on a free plan with one project each.
+
+We are not changing your 2 free project limit. You can either have two organizations on a free plan with one project each.
+
 - What happens to the spend cap?
-  The spend cap still exists, it’s just set on the organization-level and not per project. Head over to your [organization billing settings](https://supabase.com/dashboard/org/_/billing) to toggle your spend cap. We’re working on more fine-grained control over costs to supersede the spend cap.
+
+The spend cap still exists, it’s just set on the organization-level and not per project. Head over to your [organization billing settings](https://supabase.com/dashboard/org/_/billing) to toggle your spend cap. We’re working on more fine-grained control over costs to supersede the spend cap.
+
 - Am I going to pay a different amount?
-  Most customers will be paying the same or even less (i.e. multiple Pro plan projects). We’re very conscious about the current users and use-cases. For a more detailed breakdown and some examples, head over to the [docs](https://supabase.com/docs/guides/platform/org-based-billing).
+
+Most customers will pay less because we are offering more egress for free. We’re very conscious about the current users and use-cases. For a more detailed breakdown and some examples, head over to the docs. If you are concerned that your bill has increased as a result of this change please reach out here.
+
 - Does the migration come with any downtime?
+
+Not at all. There are no service disruptions during the migration, as we’re not touching your projects’ infrastructure.
