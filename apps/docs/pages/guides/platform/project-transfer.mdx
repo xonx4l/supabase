@@ -6,7 +6,7 @@ export const meta = {
   description: 'Transfer a project to another organization.',
 }
 
-With the introduction of [Organization-Level-Billing](/docs/guides/platform/org-level-billing), we’re adding the ability to freely transfer projects between different organizations. Head to your [projects' general settings](https://supabase.com/dashboard/project/_/settings/general) to initiate a project transfer.
+With the introduction of [Organization-Based Billing](/docs/guides/platform/org-based-billing), we’re adding the ability to freely transfer projects between different organizations. Head to your [projects' general settings](https://supabase.com/dashboard/project/_/settings/general) to initiate a project transfer.
 
 ![Project Transfer: General Settings](/docs/img/guides/platform/project-transfer-overview.png)
 
@@ -17,7 +17,7 @@ Target organization - the organization you want to move the project to
 
 ## Pre-Requirements
 
-- The target organization you want to move the project to needs to use [Organization-Level-Billing](/docs/guides/platform/org-level-billing).
+- The target organization you want to move the project to needs to use [Organization-Based Billing](/docs/guides/platform/org-based-billing).
 - You need to be the owner of the source organization.
 - You need to be at least a member of the target organization you want to move the project to.
 - Projects with support tier addons cannot be transferred at this point. Please [open a support ticket](https://supabase.com/dashboard/support/new).
@@ -31,7 +31,7 @@ The target organization will be charged immediately for the remaining time in th
 As the billing cycle from the source and target organization likely differ, the prorated charge on the target organization will also differ from the credits on the source organization.
 
 If you’re using a [Compute Add-On](/docs/guides/platform/compute-add-ons), the source organization will get credits for the remaining unused time, whereas the target organization won’t have any immediate charges.
-As we’re charging compute usage-based with [Organization-Level-Billing](/docs/guides/platform/org-level-billing), you’ll be charged for the usage when the next billing cycle hits based on how long the project has been in the target organization.
+As we’re charging compute usage-based with [Organization-based Billing](/docs/guides/platform/org-based-billing), you’ll be charged for the usage when the next billing cycle hits based on how long the project has been in the target organization.
 
 Similarily, for other usage metrics such as database size, egress, image transformations and so on, the usage until the project transfer will be billed on the source organization and future usage will be added to the target organization once moved.
 

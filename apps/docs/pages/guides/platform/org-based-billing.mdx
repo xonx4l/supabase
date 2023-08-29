@@ -1,13 +1,13 @@
 import Layout from '~/layouts/DefaultGuideLayout'
 
 export const meta = {
-  id: 'org-level-billing',
-  title: 'Organization-Level-Billing',
-  description: 'Learn about the new Organization-Level-Billing',
+  id: 'org-based-billing',
+  title: 'Organization-Based Billing',
+  description: 'Learn about the new Organization-based Billing',
 }
 
 <Admonition type="note">
-  Org-Level-Billing was introduced on September 4th 2023. Read the [announcement](https://announce.ment) for more context.
+  Organization-Based Billing was introduced on September 4th 2023. Read the [announcement](https://announce.ment) for more context.
 </Admonition>
 
 Supabase has organizations and projects. An organization may contain multiple projects. A project is a dedicated Supabase instance with all of its sub-services including Storage, Auth, Functions and Realtime.
@@ -18,9 +18,9 @@ If you created your organization before September 4th 2023, each project had an 
 
 ![Billing Before](/docs/img/guides/platform/org-billing-before.png)
 
-**New Organization-Level-Billing**
+**New Organization-based Billing**
 
-With Organization-Level-Billing, each organization only has a single subscription with a single plan (Free, Pro, Team or Enterprise). Project addons such as [Compute](/docs/guides/platform/compute-add-ons), [Custom Domains](/docs/guides/platform/custom-domains) and [PITR](/docs/guides/platform/backups#point-in-time-recovery) are still configured per project and are added to your organization subscription.
+With Organization-based Billing, each organization only has a single subscription with a single plan (Free, Pro, Team or Enterprise). Project addons such as [Compute](/docs/guides/platform/compute-add-ons), [Custom Domains](/docs/guides/platform/custom-domains) and [PITR](/docs/guides/platform/backups#point-in-time-recovery) are still configured per project and are added to your organization subscription.
 
 ![Billing: After](/docs/img/guides/platform/org-billing-after.png)
 
@@ -45,11 +45,11 @@ With legacy billing, you had different quotas for different types of egress, i.e
 
 ## Quota/Features per organization
 
-With Organization-Level-Billing, the quotas and features are for your entire organization. Independent of how many projects you launch, your included quota stays the same. For billing purposes, we sum up the usage from all projects for your monthly invoice.
+With Organization-based Billing, the quotas and features are for your entire organization. Independent of how many projects you launch, your included quota stays the same. For billing purposes, we sum up the usage from all projects for your monthly invoice.
 
 As the plan is set for your entire organization, upgrading your organization to a paid plan means that you unlock the benefits of the paid plan for **all** projects inside your organizations, i.e. no project in your organization will be paused on a Pro plan.
 
-Quotas for Organization-Level-Billing, these quotas apply to your entire organization:
+Quotas for Organization-based Billing, these quotas apply to your entire organization:
 
 | Metric                     | Free                     | Pro/Team                                    | Enterprise |
 | -------------------------- | ------------------------ | ------------------------------------------- | ---------- |
@@ -69,7 +69,7 @@ With legacy billing, each project had an individual plan and the included quotas
 
 Each Supabase project comes with a dedicated server. By default, your instance runs on the Starter Compute instance. You can upgrade your compute size in your [project settings](https://supabase.com/dashboard/project/_/settings/addons).
 
-With Organization-Level-Billing you won't get an immediate charge upfront when changing compute, instead we'll bill you based on compute runtime hours when your billing cycle resets.
+With Organization-based Billing you won't get an immediate charge upfront when changing compute, instead we'll bill you based on compute runtime hours when your billing cycle resets.
 
 If you launch a second or third instance on your paid plan, it just adds additional compute hours that we'll bill you on.
 
@@ -113,17 +113,17 @@ Additionally, Compute Credits reset every month and do not accumulate, in case y
 
 With Legacy Billing, you used to pay $25 for every single Pro plan project in an organization. Previously, we gave you a free “Starter” instance on paid plans - we're now giving you $10 in Compute Credits instead, to cover the first instance. You end up not paying extra for the first project inside your paid plan organisation - just like before. In case you add a Compute Add-On to your first project, you also end up paying exactly the same as before.
 
-## Comparing Legacy vs. Organization-Level-Billing
+## Comparing Legacy vs. Organization-based Billing
 
 <Admonition type="note">
   If you are using Legacy Billing and have a single project in you're organization, there is no change in pricing or quota.
 </Admonition>
 
-Here are some examples on how the new Organization-Level-Billing looks like compared to the legacy project-level billing.
+Here are some examples on how the new Organization-based Billing looks like compared to the legacy project-level billing.
 
 ### Single free plan project
 
-If you’re just running a single free project, migrating to org-level-billing comes with no disadvantage and big benefit: you now get a lot more egress.
+If you’re just running a single free project, migrating to organization-based billing comes with no disadvantage and big benefit: you now get a lot more egress.
 
 | Usage Item | Old plan (per project)             | New plan (org based)                    |
 | ---------- | ---------------------------------- | --------------------------------------- |
@@ -155,7 +155,7 @@ If you are currently running 2 free projects, **\*this does require some work fr
 
 ### Multiple pro plan projects
 
-If you're currently running multiple Pro plan projects, each one costs you $25 for the Pro plan + usage + addons. With Organization-Level-Billing, you only pay for the Pro plan once, but you also only get the included quota once.
+If you're currently running multiple Pro plan projects, each one costs you $25 for the Pro plan + usage + addons. With Organization-based Billing, you only pay for the Pro plan once, but you also only get the included quota once.
 
 **Invoice Breakdown with Legacy Billing**
 
@@ -166,7 +166,7 @@ If you're currently running multiple Pro plan projects, each one costs you $25 f
 | Pro Plan for Project 3 | $25   |
 | Total                  | $75   |
 
-**Invoice Breakdown with Organization-Level-Billing**
+**Invoice Breakdown with Organization-based Billing**
 
 | Line Item                 | Price |
 | ------------------------- | ----- |
@@ -207,7 +207,7 @@ If you're currently running a mix of Free and Pro plan projects and migrate that
 | Free Plan for Project 4 | $0    |
 | Total                   | $50   |
 
-**Invoice Breakdown with Organization-Level-Billing**
+**Invoice Breakdown with Organization-based Billing**
 
 | Line Item                 | Price |
 | ------------------------- | ----- |
@@ -224,7 +224,7 @@ All [benefits](https://supabase.com/pricing) of the Pro plan apply to all projec
 
 ### Self-Serve-Migration
 
-While we will roll out the new billing for all users during the next few weeks, you can pro-actively migrate, too. If you're not using Organization-Level-Billing yet, you may initiate the migration to Organization-Level-Billing yourself. We'll also actively reach out to you, in case you have multiple paid projects or a mix of paid and non-paid projects.
+While we will roll out the new billing for all users during the next few weeks, you can pro-actively migrate, too. If you're not using Organization-based Billing yet, you may initiate the migration to Organization-based Billing yourself. We'll also actively reach out to you, in case you have multiple paid projects or a mix of paid and non-paid projects.
 
 Head over to your [organization billing settings](https://supabase.com/dashboard/org/_/billing) to initiate the migration.
 
@@ -237,7 +237,7 @@ Head over to your [organization billing settings](https://supabase.com/dashboard
     <i>What happens to the 2 free plan projects?</i>
   </summary>
 
-We are not changing your 2 free project limit. You can either have two organizations on a free plan with one project each, or one organization on a free plan with two projects inside.
+We are not changing your 2 free project limit. You can either have two organizations on a free plan with one project each.
 
 </details>
 
@@ -261,11 +261,11 @@ We are not changing your 2 free project limit. You can either have two organizat
 
 <details>
   <summary>
-    <i>How do I know if I'm using the new Organization-Level-Billing?</i>
+    <i>How do I know if I'm using the new Organization-based Billing?</i>
   </summary>
-If you head over to your [organizations' billing settings](https://supabase.com/dashboard/org/_/billing) and it displays your organization plan at the top, it means you already use the new Organization-Level-Billing. If it shows you the section to migrate the project to the new billing, you're using the old project-level billing.
+If you head over to your [organizations' billing settings](https://supabase.com/dashboard/org/_/billing) and it displays your organization plan at the top, it means you already use the new Organization-based Billing. If it shows you the section to migrate the project to the new billing, you're using the old project-level billing.
 
-![Organization-Level-Billing: View plan](/docs/img/guides/platform/org-billing-plan.png)
+![Organization-based Billing: View plan](/docs/img/guides/platform/org-billing-plan.png)
 
 </details>
 
