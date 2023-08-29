@@ -3,7 +3,7 @@ import Layout from '~/layouts/DefaultGuideLayout'
 export const meta = {
   id: 'project-transfer',
   title: 'Project Transfers',
-  description: 'asdasd',
+  description: 'Transfer a project to another organization.',
 }
 
 With the introduction of [Organization-Level-Billing](/docs/guides/platform/org-level-billing), we’re adding the ability to freely transfer projects between different organizations. Head to your [projects' general settings](https://supabase.com/dashboard/project/_/settings/general) to initiate a project transfer.
@@ -45,7 +45,7 @@ Transferring a project comes with no downtime at all, we’re just moving things
 
 ## Transfer to a different region
 
-Note that project transfers are only transferring your projects across an organization and cannot be used to transfer between different regions. To move your project to a different region, see [migrating your project](https://supabase.com/docs/guides/platform/migrating-and-upgrading-projects#migrate-your-project).
+Note that project transfers are only transferring your projects across an organization and cannot be used to transfer between different regions. To move your project to a different region, see [migrating your project](/docs/guides/platform/migrating-and-upgrading-projects#migrate-your-project).
 
 export const Page = ({ children }) => <Layout meta={meta} children={children} />
 
