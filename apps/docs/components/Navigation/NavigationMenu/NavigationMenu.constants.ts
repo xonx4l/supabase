@@ -1126,7 +1126,7 @@ export const platform: NavMenuConstant = {
       name: 'Billing',
       url: undefined,
       items: [
-        { name: 'Org-Based Billing', url: '/guides/platform/org-based-billing' },
+        { name: 'Organization-Based Billing', url: '/guides/platform/org-based-billing' },
         { name: 'Spend cap', url: '/guides/platform/spend-cap' },
         { name: 'Enterprise Billing', url: '/guides/platform/enterprise-billing' },
       ],
