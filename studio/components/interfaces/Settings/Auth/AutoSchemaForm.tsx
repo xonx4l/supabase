@@ -1,5 +1,10 @@
 import { PermissionAction } from '@supabase/shared-types/out/constants'
 import { useParams } from 'common'
+import { observer } from 'mobx-react-lite'
+import { useEffect, useState } from 'react'
+import { Button, Form, IconEye, IconEyeOff, Input, InputNumber, Radio, Toggle } from 'ui'
+import { boolean, number, object, SchemaOf, string } from 'yup'
+
 import {
   FormActions,
   FormHeader,
@@ -11,23 +16,45 @@ import {
 import { useAuthConfigQuery } from 'data/auth/auth-config-query'
 import { useAuthConfigUpdateMutation } from 'data/auth/auth-config-update-mutation'
 import { useCheckPermissions, useStore } from 'hooks'
-import { observer } from 'mobx-react-lite'
-import { useEffect, useState } from 'react'
-import {
-  AlertDescription_Shadcn_,
-  AlertTitle_Shadcn_,
-  Alert_Shadcn_,
-  Button,
-  Form,
-  IconAlertCircle,
-  IconEye,
-  IconEyeOff,
-  Input,
-  InputNumber,
-  Radio,
-  Toggle,
-} from 'ui'
-import { boolean, number, object, string } from 'yup'
+import { AlertDescription_Shadcn_, AlertTitle_Shadcn_, Alert_Shadcn_, IconAlertCircle } from 'ui'
+
+type AuthConfig = {
+  DISABLE_SIGNUP: boolean
+  SITE_URL: string
+  JWT_EXP: number
+  REFRESH_TOKEN_ROTATION_ENABLED: boolean
+  SECURITY_REFRESH_TOKEN_REUSE_INTERVAL: number
+  SECURITY_CAPTCHA_ENABLED: boolean
+  SECURITY_CAPTCHA_SECRET: string | undefined
+  SECURITY_CAPTCHA_PROVIDER: string | undefined
+  MFA_MAX_ENROLLED_FACTORS: number | undefined
+}
+
+const schema: SchemaOf<AuthConfig> = object({
+  DISABLE_SIGNUP: boolean().required(),
+  SITE_URL: string().required('Must have a Site URL'),
+  JWT_EXP: number()
+    .max(604800, 'Must be less than 604800')
+    .required('Must have a JWT expiry value'),
+  REFRESH_TOKEN_ROTATION_ENABLED: boolean().required(),
+  SECURITY_REFRESH_TOKEN_REUSE_INTERVAL: number()
+    .min(0, 'Must be a value more than 0')
+    .required('Must have a Reuse Interval value'),
+  SECURITY_CAPTCHA_ENABLED: boolean().required(),
+  SECURITY_CAPTCHA_SECRET: string().when('SECURITY_CAPTCHA_ENABLED', {
+    is: true,
+    then: string().required('Must have a Captcha secret'),
+  }),
+  SECURITY_CAPTCHA_PROVIDER: string().when('SECURITY_CAPTCHA_ENABLED', {
+    is: true,
+    then: string()
+      .oneOf(['hcaptcha', 'turnstile'])
+      .required('Captcha provider must be either hcaptcha or turnstile'),
+  }),
+  MFA_MAX_ENROLLED_FACTORS: number()
+    .min(0, 'Must be be a value more than 0')
+    .max(30, 'Must be a value less than 30'),
+})
 
 const AutoSchemaForm = observer(() => {
   const { ui } = useStore()
@@ -57,33 +84,7 @@ const AutoSchemaForm = observer(() => {
     MFA_MAX_ENROLLED_FACTORS: authConfig?.MFA_MAX_ENROLLED_FACTORS || 10,
   }
 
-  const schema = object({
-    DISABLE_SIGNUP: boolean().required(),
-    SITE_URL: string().required('Must have a Site URL'),
-    JWT_EXP: number()
-      .max(604800, 'Must be less than 604800')
-      .required('Must have a JWT expiry value'),
-    REFRESH_TOKEN_ROTATION_ENABLED: boolean().required(),
-    SECURITY_REFRESH_TOKEN_REUSE_INTERVAL: number()
-      .min(0, 'Must be a value more than 0')
-      .required('Must have a Reuse Interval value'),
-    SECURITY_CAPTCHA_ENABLED: boolean().required(),
-    SECURITY_CAPTCHA_SECRET: string().when('SECURITY_CAPTCHA_ENABLED', {
-      is: true,
-      then: string().required('Must have a Captcha secret'),
-    }),
-    SECURITY_CAPTCHA_PROVIDER: string().when('SECURITY_CAPTCHA_ENABLED', {
-      is: true,
-      then: string()
-        .oneOf(['hcaptcha', 'turnstile'])
-        .required('Captcha provider must be either hcaptcha or turnstile'),
-    }),
-    MFA_MAX_ENROLLED_FACTORS: number()
-      .min(0, 'Must be be a value more than 0')
-      .max(30, 'Must be a value less than 30'),
-  })
-
-  const onSubmit = (values: any, { resetForm }: any) => {
+  const onSubmit = async (values: AuthConfig, { setSubmitting, resetForm }: any) => {
     const payload = { ...values }
     payload.DISABLE_SIGNUP = !values.DISABLE_SIGNUP
 

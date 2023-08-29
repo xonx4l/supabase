@@ -8,17 +8,26 @@ import { configKeys } from './keys'
 
 export type JwtSecretUpdateVariables = {
   projectRef: string
-  jwtSecret: string
+  jwtSecret?: string
+  jwtOidcIssuers?: string[]
+  jwtJwksUris?: string[]
+  jwtCustomJwks?: string
   changeTrackingId: string
 }
 
 export async function updateJwtSecret({
   projectRef,
   jwtSecret,
+  jwtOidcIssuers,
+  jwtJwksUris,
+  jwtCustomJwks,
   changeTrackingId,
 }: JwtSecretUpdateVariables) {
   const response = await patch(`${API_URL}/projects/${projectRef}/config/secrets`, {
     jwt_secret: jwtSecret,
+    jwt_oidc_issuers: jwtOidcIssuers,
+    jwt_jwks_uris: jwtJwksUris,
+    jwt_custom_jwks: jwtCustomJwks,
     change_tracking_id: changeTrackingId,
   })
   if (response.error) {
