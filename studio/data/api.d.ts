@@ -1818,6 +1818,8 @@ export interface components {
       SMS_PROVIDER?: string;
       SMS_MESSAGEBIRD_ACCESS_KEY?: string;
       SMS_MESSAGEBIRD_ORIGINATOR?: string;
+      SMS_TEST_OTP?: string;
+      SMS_TEST_OTP_VALID_UNTIL?: string;
       SMS_TEXTLOCAL_API_KEY?: string;
       SMS_TEXTLOCAL_SENDER?: string;
       SMS_TWILIO_ACCOUNT_SID?: string;
@@ -3413,11 +3415,15 @@ export interface components {
       session_replication_role?: "origin" | "replica" | "local";
     };
     UpdateSecretsConfigBody: {
-      jwt_secret: string;
+      jwt_secret?: string;
+      jwt_oidc_issuers?: (string)[];
+      jwt_jwks_uris?: (string)[];
+      jwt_custom_jwks?: string;
       change_tracking_id: string;
     };
     UpdateSecretsResponse: {
-      message: string;
+      message?: string;
+      jwt_jwks_resolved?: Record<string, unknown> | null;
     };
     StorageConfigResponse: {
       isFreeTier: boolean;
