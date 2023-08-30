@@ -1113,7 +1113,7 @@ export const platform: NavMenuConstant = {
           url: '/guides/platform/migrating-and-upgrading-projects',
         },
         {
-          name: 'Project Transfer',
+          name: 'Transfer Project',
           url: '/guides/platform/project-transfer',
         },
         { name: 'Network Restrictions', url: '/guides/platform/network-restrictions' },
