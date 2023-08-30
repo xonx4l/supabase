@@ -21,7 +21,7 @@ The Supabase Platform has "organizations" and "projects". An organization may co
 
 ## Legacy billing system
 
-Organization-Based Billing was introduced on September 4th 2023. We are migrating all projects to this new structure. Read the [announcement](https://supabase.com/blog/organization-based-billing) for more context.
+Organization-based Billing was introduced on September 4th 2023. We are migrating all projects to this new structure. Read the [announcement](https://supabase.com/blog/organization-based-billing) for more context.
 
 ### Legacy Billing (Project-based)
 
@@ -41,14 +41,14 @@ Each organization receives a total egress quota (eg. 250GB on the Pro plan) whic
 
 ### Included Egress Quota
 
-Each plan includes a quota for unified egress, which is applied to your entire organization. Any egress above this quota is billed at $0.09 per GB.
+Each plan includes a quota for unified egress, which is applied to your entire organization.
 
-| Plan       | Total Egress Quota |
-| ---------- | ------------------ |
-| Free       | 5 GB               |
-| Pro        | 250 GB             |
-| Team       | 250 GB             |
-| Enterprise | Custom             |
+| Plan       | Total Egress Quota | Over-Usage    |
+| ---------- | ------------------ | ------------- |
+| Free       | 5 GB               | -             |
+| Pro        | 250 GB             | $0.09 per GB  | 
+| Team       | 250 GB             | $0.09 per GB  | 
+| Enterprise | Custom             | Custom        |
 
 ### Egress Dashboards
 
@@ -64,7 +64,7 @@ Under the old system, you had different quotas for each service. i.e. on the Pro
 
 Quotas and features are applied to your entire organization, independent of how many projects you launch within that organization. For billing purposes, we sum the usage across all projects in a monthly invoice.
 
-Upgrading your organization to a paid plan means that you unlock the benefits of the paid plan for **all** projects within that organization. For example, no projects in your "Pro" organization will be paused.
+Upgrading your organization to a paid plan means that you unlock the benefits of the paid plan for **all** projects within that organizatio - for example, no projects in your "Pro" organization will be paused. See [pricing page](https://supabase.com/pricing) for details on all plans.
 
 ### Usage Items
 
@@ -132,11 +132,11 @@ With Legacy Billing, you used to pay $25 for every single Pro plan project in an
 
 ## Legacy vs Organization-based Billing
 
-If you are using Legacy Billing and have a single project in you're organization, there is no change in pricing or quota. Here are some examples on how the new Organization-based Billing migration affects you.
+If you are using Legacy Billing and have a single project in your organization, there is no change in pricing or quota. Here are some examples on how the new Organization-based Billing migration affects you.
 
 ### Single free plan project
 
-If you’re just running a single free project, migrating to organization-based billing comes with no disadvantage and one big benefit: you now get a lot more egress.
+If you’re just running a single free project, migrating to Organization-based Billing comes with no disadvantage and one big benefit: you now get a lot more egress.
 
 | Usage Item | Old plan (per project)             | New plan (org based)                    |
 | ---------- | ---------------------------------- | --------------------------------------- |
@@ -168,7 +168,7 @@ If you are currently running 2 free projects, **this does require some work from
 
 ### Multiple pro plan projects
 
-If you're currently running multiple Pro plan projects, each one costs you $25 for the Pro plan + usage + addons. With Organization-based Billing, you only pay for the Pro plan once, but you also only get the included quota once.
+If you're currently running multiple Pro plan projects, each one costs you $25 for the Pro plan + usage + addons. 
 
 **Invoice Breakdown with Legacy Billing**
 
@@ -179,6 +179,8 @@ If you're currently running multiple Pro plan projects, each one costs you $25 f
 | Pro Plan for Project 3 | $25   |
 | Total                  | $75   |
 
+As you're only paying for the plan once, you end up paying less for multiple projects on the Pro plan. 
+
 **Invoice Breakdown with Organization-based Billing**
 
 | Line Item                 | Price |
@@ -188,7 +190,7 @@ If you're currently running multiple Pro plan projects, each one costs you $25 f
 | Compute Credits           | $-10  |
 | Total                     | $45   |
 
-You're paying less for multiple projects on the Pro plan. However, you're no longer getting the quota thrice, but only once. Here's the quota for your entire organization:
+However, you're no longer getting the quota thrice, but only once. Here's the quota for your entire organization:
 
 | Usage Item                 | Quota                                       |
 | -------------------------- | ------------------------------------------- |
@@ -258,18 +260,14 @@ We are not changing your 2 free project limit. You can have two organizations on
   <summary>
     <i>What happens to the spend cap?</i>
   </summary>
-  The [spend cap](/docs/guides/platform/spend-cap) still exists, it's just set on the organization-level
-  and not per project. Head over to your [organization billing settings](https://supabase.com/dashboard/org/_/billing)
-  to toggle you spend cap. We're working on more fine-grained control over costs to supersede the spend
-  cap.
+  The [spend cap](/docs/guides/platform/spend-cap) still exists, it's just set on the organization-level and not per project. Head over to your [organization billing settings](https://supabase.com/dashboard/org/_/billing) to toggle your spend cap. We're working on more fine-grained control over costs to supersede the spend cap.
 </details>
 
 <details>
   <summary>
     <i>If I'm exceeding quota, can I move out a single project to a different organization?</i>
   </summary>
-  Yes, with the new [Project Transfers](/docs/guides/platform/project-transfer) you can move any project
-  to a different organization.
+  Yes, with the new [Project Transfers](/docs/guides/platform/project-transfer) you can move any project to a different organization.
 </details>
 
 <details>
@@ -286,8 +284,7 @@ If you head over to your [organizations' billing settings](https://supabase.com/
   <summary>
     <i>Does the migration come with any downtime?</i>
   </summary>
-  Not at all. There are no service disruptions during the migration, as we’re not touching your projects’
-  infrastructure.
+  Not at all. There are no service disruptions during the migration, as we’re not touching your projects’ infrastructure.
 </details>
 
 <details>
