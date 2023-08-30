@@ -2,23 +2,34 @@ import Layout from '~/layouts/DefaultGuideLayout'
 
 export const meta = {
   id: 'organization-based-billing',
-  title: 'Organization-Based Billing',
-  description: 'Learn about the new Organization-based Billing',
+  title: 'How billing works',
+  description: 'Learn how organzation-based billing works in Supabase.',
+  subtitle: 'Learn how organzation-based billing works in Supabase.',
 }
 
-<Admonition type="note">
-  Organization-Based Billing was introduced on September 4th 2023. Read the [announcement](https://supabase.com/blog/organization-based-billing) for more context.
-</Admonition>
+Our goal at Supabase is to provide a _predictable_ billing system that grows with your project.
 
-Supabase has organizations and projects. An organization may contain multiple projects. A project is a dedicated Supabase instance with all of its sub-services including Storage, Auth, Functions and Realtime.
+## How billing is organized
 
-**Legacy Billing**
+The Supabase Platform has "organizations" and "projects". An organization may contain multiple projects. Each project is a dedicated Supabase instance with all of its sub-services including Storage, Auth, Functions and Realtime. For example:
 
-If you created your organization before September 4th 2023, each project had an individual subscription, a plan and addons.
+- `Organization 1`
+  - `Project 1` (Database, Auth, Storage, Functions, Realtime)
+  - `Project 2` (Database, Auth, Storage, Functions, Realtime)
+- `Organization 2`
+  - `Project 3` (Database, Auth, Storage, Functions, Realtime)
+
+## Legacy billing system
+
+Organization-Based Billing was introduced on September 4th 2023. We are migrating all projects to this new structure. Read the [announcement](https://supabase.com/blog/organization-based-billing) for more context.
+
+### Legacy Billing (Project-based)
+
+If your organization was created before September 4th 2023, each project had an individual subscription, a plan and addons.
 
 ![Billing Before](/docs/img/guides/platform/org-billing-before.png)
 
-**New Organization-based Billing**
+### Current Billing (Organization-based)
 
 With Organization-based Billing, each organization only has a single subscription with a single plan (Free, Pro, Team or Enterprise). Project addons such as [Compute](/docs/guides/platform/compute-add-ons), [Custom Domains](/docs/guides/platform/custom-domains) and [PITR](/docs/guides/platform/backups#point-in-time-recovery) are still configured per project and are added to your organization subscription.
 
@@ -26,13 +37,11 @@ With Organization-based Billing, each organization only has a single subscriptio
 
 ## Unified Egress
 
-In an effort to provide a more fair egress quota for all users, we are unifying egress to be a single usage-based item. You get a total quota, i.e. 250GB on the Pro plan, and can use it for anything, be it Storage, Realtime, Auth, Functions or Database.
+Each organization receives a total egress quota (eg. 250GB on the Pro plan) which can be used for anything - Storage, Realtime, Auth, Functions or Database.
 
-While the quota and billing is based on the unified egress, you can still see a breakdown of the different types of egress on your [organization usage page](https://supabase.com/dashboard/org/_/usage).
+### Included Egress Quota
 
-![Unified Egress](/docs/img/guides/platform/unified-egress.png)
-
-Quotas for unified egress, applies to your entire organization:
+Each plan includes a quota for unified egress, which is applied to your entire organization. Any egress above this quota is billed at $0.09 per GB.
 
 | Plan       | Total Egress Quota |
 | ---------- | ------------------ |
@@ -41,15 +50,23 @@ Quotas for unified egress, applies to your entire organization:
 | Team       | 250 GB             |
 | Enterprise | Custom             |
 
-With legacy billing, you had different quotas for different types of egress, i.e. on the Pro plan, you had 50GB of database egress and 200GB of storage egress included. If you weren't using storage at all, you'd miss out on the included usage.
+### Egress Dashboards
 
-## Quota/Features per organization
+You can see a breakdown of the different types of egress on your [organization usage page](https://supabase.com/dashboard/org/_/usage).
 
-With Organization-based Billing, the quotas and features are for your entire organization. Independent of how many projects you launch, your included quota stays the same. For billing purposes, we sum up the usage from all projects for your monthly invoice.
+![Unified Egress](/docs/img/guides/platform/unified-egress.png)
 
-As the plan is set for your entire organization, upgrading your organization to a paid plan means that you unlock the benefits of the paid plan for **all** projects inside your organizations, i.e. no project in your organization will be paused on a Pro plan.
+### Legacy Egress
 
-Quotas for Organization-based Billing, these quotas apply to your entire organization:
+Under the old system, you had different quotas for each service. i.e. on the Pro plan, you had 50GB of database egress and 200GB of storage egress included. If you weren't using storage, you'd miss out on the included egress. The new system provides you more egress in every scenario.
+
+## Quotas and Features
+
+Quotas and features are applied to your entire organization, independent of how many projects you launch within that organization. For billing purposes, we sum the usage across all projects in a monthly invoice.
+
+Upgrading your organization to a paid plan means that you unlock the benefits of the paid plan for **all** projects within that organization. For example, no projects in your "Pro" organization will be paused.
+
+### Usage Items
 
 | Metric                     | Free                     | Pro/Team                                    | Enterprise |
 | -------------------------- | ------------------------ | ------------------------------------------- | ---------- |
@@ -63,21 +80,24 @@ Quotas for Organization-based Billing, these quotas apply to your entire organiz
 | Realtime Message Count     | 2.000.000                | 5.000.000 included, then $2.5 per 1.000.000 | Custom     |
 | Realtime Peak Connections  | 200                      | 500 included, then $10 per 1000             | Custom     |
 
-With legacy billing, each project had an individual plan and the included quotas and features were on a project level. Besides the unified egress, the quota for the Pro and Team plan have not changed. We are also not changing any fees for over-usage. You can launch as many organizations as you want, so you can still create two organizations on the Pro plan for $25 each and launch a single project in each one. You'd have the same quotas and pricing as of today.
+### Legacy quotas
+
+Under the legacy billing systm, each project had an individual plan and the included quotas and features were on a project level. Besides the unified egress, the quota for the Pro and Team plan have not changed. We are also not changing any fees for over-usage. You can launch as many organizations as you want, so you can still create two organizations on the Pro plan for $25 each and launch a single project in each one. You'd have the same quotas and pricing as of today.
 
 ## Usage-based billing for compute
 
-Each Supabase project comes with a dedicated server. By default, your instance runs on the Starter Compute instance. You can upgrade your compute size in your [project settings](https://supabase.com/dashboard/project/_/settings/addons).
+We provide a dedicated server for every Supabase project. By default, your instance runs on the Starter Compute instance. You can upgrade your compute size in your [project settings](https://supabase.com/dashboard/project/_/settings/addons).
 
 With Organization-based Billing you won't get an immediate charge upfront when changing compute, instead we'll bill you based on compute runtime hours when your billing cycle resets.
 
-If you launch a second or third instance on your paid plan, it just adds additional compute hours that we'll bill you on.
+If you launch a second or third instance on your paid plan, we add the additional compute hours to the final invoice.
 
-<Admonition type="note">
-  We only count compute hours for instances that are active. Paused projects do not count towards compute usage. We’re also working on self-serve pausing/unpausing on paid plans to further manage costs.
+{/* prettier-ignore */}
+<Admonition type="note" label="Paused projects">
+  We only count compute hours for instances that are active. Paused projects do not count towards compute usage. We’re working on self-serve pausing and unpausing on paid plans to further manage costs.
 </Admonition>
 
-Pricing for Compute Hours:
+### Compute pricing
 
 | Instance Size | Hourly Price | Estimated Monthly Price |
 | ------------- | ------------ | ----------------------- |
@@ -92,14 +112,14 @@ Pricing for Compute Hours:
 | 12XL          | $3.836       | ~$2800                  |
 | 16XL          | $5.12        | ~$3730                  |
 
-With Legacy Billing, when you wanted to upgrade the [Compute Add-On](/docs/guides/platform/compute-add-ons), you immediately prepaid the prorated amount (days left in your current billing cycle) and you always paid upfront for the entire month when your billing cycle resets. When you downgraded, you got the appropriate credits for unused time.
-
-<Admonition type="note">
-You can still have two projects for free, either in a single free plan organization or in two free plan orgs with one project each.
-
-On paid plans, the first project comes with no additional costs. If you have an organisation on the Pro plan and you launch your first project, you're paying $25/month, just like before.
-
+{/* prettier-ignore */}
+<Admonition type="top" label="Improvments to billing">
+  With Legacy Billing, when you upgraded the [Compute Add-On](/docs/guides/platform/compute-add-ons), you were immediately charged the prorated amount (days left in your current billing cycle) and when your billing cycle reset you were charged upfront for the entire month. When you downgraded, you got the appropriate credits for unused time.
 </Admonition>
+
+### Free plan
+
+Supabase provides two "Free organizations". Each organization can run a `Starter` instance for free. This is a great way to get started with Supabase and try out the platform.
 
 ### Compute Credits
 
@@ -113,13 +133,9 @@ Additionally, Compute Credits reset every month and do not accumulate, in case y
 
 With Legacy Billing, you used to pay $25 for every single Pro plan project in an organization. Previously, we gave you a free “Starter” instance on paid plans - we're now giving you $10 in Compute Credits instead, to cover the first instance. You end up not paying extra for the first project inside your paid plan organisation - just like before. In case you add a Compute Add-On to your first project, you also end up paying exactly the same as before.
 
-## Comparing Legacy vs. Organization-based Billing
+## Legacy vs Organization-based Billing
 
-<Admonition type="note">
-  If you are using Legacy Billing and have a single project in you're organization, there is no change in pricing or quota.
-</Admonition>
-
-Here are some examples on how the new Organization-based Billing looks like compared to the legacy project-level billing.
+If you are using Legacy Billing and have a single project in you're organization, there is no change in pricing or quota. Here are some examples on how the new Organization-based Billing migration affects you.
 
 ### Single free plan project
 
@@ -219,7 +235,9 @@ If you're currently running a mix of Free and Pro plan projects and migrate that
 All [benefits](https://supabase.com/pricing) of the Pro plan apply to all projects within your organization.
 
 <Admonition type="note">
-  You can transfer projects to a free organization, in case you haven't used up your 2 free project limit, if you don't want additional projects on the Pro plan. See [Project Transfers](/docs/guides/platform/project-transfer).
+  You can transfer projects to a free organization, in case you haven't used up your 2 free project
+  limit, if you don't want additional projects on the Pro plan. See [Project
+  Transfers](/docs/guides/platform/project-transfer).
 </Admonition>
 
 ### Self-Serve-Migration
@@ -273,7 +291,8 @@ If you head over to your [organizations' billing settings](https://supabase.com/
   <summary>
     <i>Does the migration come with any downtime?</i>
   </summary>
-Not at all. There are no service disruptions during the migration, as we’re not touching your projects’ infrastructure.
+  Not at all. There are no service disruptions during the migration, as we’re not touching your projects’
+  infrastructure.
 </details>
 
 export const Page = ({ children }) => <Layout meta={meta} children={children} />
