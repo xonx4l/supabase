@@ -82,7 +82,7 @@ Upgrading your organization to a paid plan means that you unlock the benefits of
 
 ### Legacy quotas
 
-Under the legacy billing systm, each project had an individual plan and the included quotas and features were on a project level. Besides the unified egress, the quota for the Pro and Team plan have not changed. We are also not changing any fees for over-usage. You can launch as many organizations as you want, so you can still create two organizations on the Pro plan for $25 each and launch a single project in each one. You'd have the same quotas and pricing as of today.
+Under the legacy billing system, each project had an individual plan and the included quotas and features were on a project level. Besides the unified egress, the quotas have not changed. We are also not changing any fees for over-usage. You can launch as many organizations as you want, so you can still create two organizations on the Pro plan for $25 each and launch a single project in each one. Importantly, each subsequent database inside that Organization will cost $0.01344/hour (roughly $10 per month), rather than $25.
 
 ## Usage-based billing for compute
 
@@ -112,10 +112,7 @@ If you launch a second or third instance on your paid plan, we add the additiona
 | 12XL          | $3.836       | ~$2800                  |
 | 16XL          | $5.12        | ~$3730                  |
 
-{/* prettier-ignore */}
-<Admonition type="top" label="Improvments to billing">
-  With Legacy Billing, when you upgraded the [Compute Add-On](/docs/guides/platform/compute-add-ons), you were immediately charged the prorated amount (days left in your current billing cycle) and when your billing cycle reset you were charged upfront for the entire month. When you downgraded, you got the appropriate credits for unused time.
-</Admonition>
+With Legacy Billing, when you upgraded the [Compute Add-On](/docs/guides/platform/compute-add-ons), you were immediately charged the prorated amount (days left in your current billing cycle) and when your billing cycle reset you were charged upfront for the entire month. When you downgraded, you got the appropriate credits for unused time.
 
 ### Free plan
 
@@ -139,7 +136,7 @@ If you are using Legacy Billing and have a single project in you're organization
 
 ### Single free plan project
 
-If you’re just running a single free project, migrating to organization-based billing comes with no disadvantage and big benefit: you now get a lot more egress.
+If you’re just running a single free project, migrating to organization-based billing comes with no disadvantage and one big benefit: you now get a lot more egress.
 
 | Usage Item | Old plan (per project)             | New plan (org based)                    |
 | ---------- | ---------------------------------- | --------------------------------------- |
@@ -155,7 +152,7 @@ We're not changing the number of free projects you can have. Here are the quotas
 | Usage Item                | Old plan (per project)             | New plan (org based)                    |
 | ------------------------- | ---------------------------------- | --------------------------------------- |
 | Egress                    | 4GB - (2GB Database + 2GB Storage) | 5GB across Database + Storage           |
-| Database Space            | 500MB                              | 500Mb                                   |
+| Database Space            | 500MB                              | 500MB                                   |
 | Storage Space             | 1GB                                | 1GB                                     |
 | Monthly Active Users      | 50.000 MAU                         | 50.000 MAU                              |
 | Edge Function Invocations | 500K                               | 500K                                    |
@@ -211,7 +208,7 @@ See [Project Transfers](/docs/guides/platform/project-transfer) to move projects
 
 ### Mix of free and pro plan projects
 
-If you're currently running a mix of Free and Pro plan projects and migrate that to a Pro plan organization, your base fee might be higher, but you'll also get the benefits of the paid plan for all projects including no auto-pausing, daily backups, storage image transformations, 7-day log retention.
+If you're currently running a mix of Free and Pro plan projects and migrate that to a Pro plan organization, your base fee might be higher, but you'll also get the benefits of the paid plan for all projects including no auto-pausing, daily backups, storage image transformations, 7-day log retention and e-mail support.
 
 **Invoice Breakdown with Legacy Billing**
 
@@ -242,7 +239,7 @@ All [benefits](https://supabase.com/pricing) of the Pro plan apply to all projec
 
 ### Self-Serve-Migration
 
-While we will roll out the new billing for all users during the next few weeks, you can pro-actively migrate, too. If you're not using Organization-based Billing yet, you may initiate the migration to Organization-based Billing yourself. We'll also actively reach out to you, in case you have multiple paid projects or a mix of paid and non-paid projects.
+While we will roll out the new billing for all users during the next few weeks, you can pro-actively migrate, too. If you're not using Organization-based Billing yet, you may initiate the migration to Organization-based Billing yourself. We'll also actively reach out to you, in case you have multiple projects in a single organization.
 
 Head over to your [organization billing settings](https://supabase.com/dashboard/org/_/billing) to initiate the migration.
 
@@ -255,7 +252,7 @@ Head over to your [organization billing settings](https://supabase.com/dashboard
     <i>What happens to the 2 free plan projects?</i>
   </summary>
 
-We are not changing your 2 free project limit. You can either have two organizations on a free plan with one project each.
+We are not changing your 2 free project limit. You can have two organizations on a free plan with one project each.
 
 </details>
 
@@ -273,7 +270,7 @@ We are not changing your 2 free project limit. You can either have two organizat
   <summary>
     <i>If I'm exceeding quota, can I move out a single project to a different organization?</i>
   </summary>
-  Yes, with the new [Project Transfers]((/docs/guides/platform/project-transfer)) you can move any project
+  Yes, with the new [Project Transfers](/docs/guides/platform/project-transfer) you can move any project
   to a different organization.
 </details>
 
@@ -293,6 +290,15 @@ If you head over to your [organizations' billing settings](https://supabase.com/
   </summary>
   Not at all. There are no service disruptions during the migration, as we’re not touching your projects’
   infrastructure.
+</details>
+
+<details>
+<summary>
+  <i>I have additional questions/concerns, how do I get help?</i>
+</summary>
+
+If you are concerned that your bill has increased as a result of this change or you have any other questions or concerns, please reach out [here](https://supabase.com/dashboard/support/new?category=billing&subject=Organization%20based%20billing).
+
 </details>
 
 export const Page = ({ children }) => <Layout meta={meta} children={children} />
