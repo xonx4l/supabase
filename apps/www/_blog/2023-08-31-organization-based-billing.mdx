@@ -12,7 +12,7 @@ date: '2023-08-31'
 toc_depth: 2
 ---
 
-To simplify our continuously growing platform, we're updating our billing system with some improvements requested by our community. This change provides a more intuitive and industry-aligned approach to billing. We're also laying the groundwork for features like branching, rolling out a self-serve Team Plan, [long-requested](https://github.com/orgs/supabase/discussions/6681) project transfers between organizations, and an extra 1GB of egress on the Free Plan.
+To simplify our continuously growing platform, we're updating our billing system with some improvements requested by our community. This change provides a more intuitive and industry-aligned approach to billing. We're also laying the groundwork for features like [branching](/blog/supabase-local-dev#branching-and-preview-environments), rolling out a self-serve [Team Plan](https://supabase.com/pricing), [long-requested](https://github.com/orgs/supabase/discussions/6681) project transfers between organizations, and an extra 1GB of egress on the Free Plan.
 
 We've attempted to keep these changes as simple as possible, offering _more generous_ quotas for the Free Plan. If we missed anything, it's because [billing is hard](https://www.getlago.com/blog/why-billing-systems-are-a-nightmare-for-engineers). We're still committed to our [original goals](/blog/pricing#goals-for-our-pricing-structure) for predictable pricing.
 
@@ -79,7 +79,7 @@ This should be done before the end of October, but don't worry - we'll give you 
 
 ## No more upfront payments for databases
 
-Currently, plans include one Starter Compute instance. When you upgrade the [Compute Add-On](https://supabase.com/docs/guides/platform/compute-add-ons), you immediately prepay the pro-rated amount (days left in your current billing cycle), and then pay upfront for the entire month when your billing cycle resets. When you downgrade, you get the appropriate credits for unused time.
+Currently, plans include one Starter Compute instance. When you upgrade the [Compute Add-On](https://supabase.com/docs/guides/platform/compute-add-ons), you immediately prepay the prorated amount (days left in your current billing cycle), and then pay upfront for the entire month when your billing cycle resets. When you downgrade, you get the appropriate credits for unused time.
 
 Full-month upfront payments are annoying, especially when you just want to do a temporary upgrade. We've heard your feedback and are moving billing for compute to hourly usage.
 
@@ -104,7 +104,7 @@ In an effort to provide a more fair egress quota for all users, we are unifying 
 
 ## Fewer invoices
 
-With Project-based billing, each project has an individual billing cycle so as you create more projects you also create more invoices.
+With Project-based billing, each project has an individual billing cycle, so as you create more projects you also create more invoices.
 
 With Organization-based Billing, you receive a single invoice. Launching a new project, removing an old project, and upgrading or downgrading compute no longer triggers additional invoices.
 
@@ -189,4 +189,4 @@ Not at all. There are no service disruptions during the migration, as we're not 
 
 ## Help, my bill increased!
 
-This is a major change, and we've tried to design it in a way that's cheaper for everyone. If your bill has increased as a result of this change that's not our intention. Please submit a Support ticket [on the dashboard](/dashboard/support/new?category=billing&subject=Organization%20based%20billing) and we'll figure out a solution.
+This is a major change, and we've tried to design it in a way that's cheaper for everyone. If your bill has increased as a result of this change, that's not our intention. Please submit a Support ticket [on the dashboard](/dashboard/support/new?category=billing&subject=Organization%20based%20billing) and we'll figure out a solution.
