@@ -19,9 +19,9 @@ const CTABanner = dynamic(() => import('components/CTABanner/index'))
 const CustomerStories = dynamic(() => import('components/CustomerStories'))
 const TwitterSocialSection = dynamic(() => import('~/components/TwitterSocialSection'))
 
-type Props = { customerStories: PostTypes[] }
+type Props = { customerStories: PostTypes[]; blogPosts: PostTypes[] }
 
-const Index = ({ customerStories }: Props) => {
+const Index = ({ customerStories, blogPosts }: Props) => {
   const { isDarkMode, toggleTheme } = useTheme()
   const [initialDarkMode] = useState(isDarkMode)
 
@@ -35,7 +35,7 @@ const Index = ({ customerStories }: Props) => {
   }, [])
 
   return (
-    <Layout>
+    <Layout blogPosts={blogPosts}>
       <Hero />
       <Products {...content.productsSection} />
       <TwitterSocialSection />
@@ -50,10 +50,12 @@ const Index = ({ customerStories }: Props) => {
 
 export async function getStaticProps() {
   const customerStories = getSortedPosts({ directory: '_customers', limit: 3 })
+  const blogPosts = getSortedPosts({ directory: '_blog', runner: '** BLOG PAGE **', limit: 1 })
 
   return {
     props: {
       customerStories,
+      blogPosts,
     },
   }
 }

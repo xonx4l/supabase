@@ -6,6 +6,10 @@ import { data as DevelopersData } from 'data/Developers'
 import ProductIcon from '../ProductIcon'
 import { NavigationMenuLink } from 'ui/src/components/shadcn/ui/navigation-menu'
 import MenuItem from './MenuItem'
+import Image from 'next/image'
+import { getSortedPosts } from '../../lib/posts'
+import PostTypes from '../../types/post'
+import { useRouter } from 'next/router'
 
 type Props = {
   text: string
@@ -15,45 +19,125 @@ type Props = {
   svg?: any
 }
 
-const Developers = () => (
-  <>
-    <div className="border-b p-2">
-      {DevelopersData['header'].map((link) => (
-        <NavigationMenuLink asChild>
-          <MenuItem key={link.text} href={link.url} className="py-4 items-center group">
-            {link.icon && <ProductIcon icon={link.icon} color="gray" />}
-            <div className="flex flex-col space-y-1 flex-1">
-              <div className="leading-none">{link.text}</div>
-              {link.description && (
-                <p className="line-clamp-2 text-sm leading-snug text-light">{link.description}</p>
-              )}
+const Developers = ({ blogPosts }: { blogPosts?: PostTypes[] }) => {
+  const latestBlogPost = blogPosts ? blogPosts[0] : null
+  const { basePath } = useRouter()
+
+  return (
+    <>
+      {/* <div className="border-b p-4">
+        {DevelopersData['header'].map((link) => (
+          <NavigationMenuLink asChild>
+            <MenuItem key={link.text} href={link.url} className="py-4 items-center group">
+              {link.icon && <ProductIcon icon={link.icon} color="gray" />}
+              <div className="flex flex-col space-y-1 flex-1">
+                <div className="leading-none">{link.text}</div>
+                {link.description && (
+                  <p className="line-clamp-2 text-sm leading-snug text-light">{link.description}</p>
+                )}
+              </div>
+              <div className="shrink-0 flex items-center">
+                <IconChevronRight className="-translate-x-1 transition-transform group-hover:translate-x-0" />
+              </div>
+            </MenuItem>
+          </NavigationMenuLink>
+        ))}
+      </div> */}
+      <div className="flex">
+        <div className="w-[500px] p-8 border-r grid gap-3 grid-cols-2">
+          {DevelopersData['navigation'].map((column) => (
+            <div key={column.label} className="p-2 flex flex-col gap-6">
+              <label className="text-muted text-xs uppercase tracking-widest font-mono">
+                {column.label}
+              </label>
+              <ul className="flex flex-col gap-6">
+                {column.links.map((link: Props) => (
+                  <li key={link.text}>
+                    <Link href={link.url!}>
+                      <a className="flex items-center gap-2 text-light hover:text-brand focus-visible:ring-2 focus-visible:outline-none focus-visible:rounded focus-visible:ring-foreground-lighter focus-visible:text-foreground-strong">
+                        <svg
+                          className="h-5 w-5 text-brand"
+                          viewBox="0 0 13 14"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            fill="currentColor"
+                            d={link.icon}
+                          />
+                        </svg>
+                        <span>{link.text}</span>
+                      </a>
+                    </Link>
+
+                    {/* <TextLink
+                hasChevron={false}
+                key={link.text}
+                url={link.url}
+                label={link.text}
+                className="focus-visible:ring-offset-4 focus-visible:ring-offset-background-overlay"
+              /> */}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="shrink-0 flex items-center">
-              <IconChevronRight className="-translate-x-1 transition-transform group-hover:translate-x-0" />
-            </div>
-          </MenuItem>
-        </NavigationMenuLink>
-      ))}
-    </div>
-    <ul className="grid gap-3 p-2 md:grid-cols-3 w-[650px] border-b">
-      {DevelopersData['navigation'].map((column) => (
-        <li key={column.label} className="p-2">
-          <label className="text-muted text-xs uppercase tracking-widest font-mono">
-            {column.label}
-          </label>
-          {column.links.map((link: Props) => (
-            <TextLink
-              hasChevron={false}
-              key={link.text}
-              url={link.url}
-              label={link.text}
-              className="focus-visible:ring-offset-4 focus-visible:ring-offset-background-overlay"
-            />
           ))}
-        </li>
-      ))}
-    </ul>
-    <div className="p-2 flex justify-between bg-alternative text-sm">
+        </div>
+        <div className="flex flex-col w-[500px]">
+          <div className="flex-col gap-3 border-b p-8">
+            <Link href="/blog">
+              <a className="inline-flex items-center gap-1 text-muted hover:text-brand text-xs uppercase tracking-widest font-mono mb-6">
+                Blog
+                <IconChevronRight className="h-3 w-3" />
+              </a>
+            </Link>
+            <Link href="/launch-week">
+              <a className="group flex items-center gap-3 text-lighter">
+                <div className="relative rounded-md border h-20 w-32 flex-shrink-0 overflow-auto">
+                  <Image
+                    src={`${basePath}/images/blog/${latestBlogPost?.image}`}
+                    alt="launch week 8"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <p className="text-strong mb-0 line-clamp-2 group-hover:text-brand">
+                    {latestBlogPost?.title}
+                  </p>
+                  <p className="line-clamp-1 text-xs !mb-0">{latestBlogPost?.description}</p>
+                </div>
+              </a>
+            </Link>
+          </div>
+          {/* <div className="flex-1 border-b p-8"></div> */}
+          <div className="flex items-center p-8">
+            <Link href="/launch-week">
+              <a className="group flex items-center gap-3 text-lighter">
+                <div className="relative rounded-md border h-20 w-32 flex-shrink-0 overflow-auto">
+                  <Image
+                    src="/images/launchweek/8/lw8-og.jpg"
+                    alt="launch week 8"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <p className="text-strong group-hover:text-brand text-normal mb-0">
+                    Supabase Launch Week 8
+                  </p>
+                  <p className="text-xs !mb-0">
+                    One new feature (or more) every day during a week.
+                  </p>
+                </div>
+              </a>
+            </Link>
+          </div>
+        </div>
+      </div>
+      {/* <div className="p-4 flex justify-between bg-alternative text-sm">
       <Link href={DevelopersData['footer']['support'].url}>
         <a className="p-2 hover:bg-[#101010] rounded text-foreground-light flex items-center gap-1 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:text-foreground-strong">
           <svg
@@ -79,8 +163,9 @@ const Developers = () => (
           {DevelopersData['footer']['systemStatus'].text}
         </a>
       </Link>
-    </div>
-  </>
-)
+    </div> */}
+    </>
+  )
+}
 
 export default Developers
